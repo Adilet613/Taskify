@@ -1,25 +1,15 @@
-function showFreelancerTest() {
-    let testSection = document.createElement("div");
-    testSection.innerHTML = `
-        <div class="test-container">
-            <h2>Тест для фрилансеров</h2>
-            <p>Решите следующую задачу:</p>
-            <pre>Чему равно 2 + 2 * 2?</pre>
-            <input type="text" id="answer" placeholder="Введите ответ">
-            <button onclick="checkAnswer()">Отправить</button>
-            <p id="result"></p>
-        </div>
-    `;
-    document.body.innerHTML = "";
-    document.body.appendChild(testSection);
-}
+let questions = [
+    "Сколько будет 2 + 2?",
+    "Какой тег используется для ссылки в HTML?",
+    "Как называется язык программирования для создания стилей?"
+];
+let currentQuestion = 0;
 
-function checkAnswer() {
-    let answer = document.getElementById("answer").value;
-    let resultText = document.getElementById("result");
-    if (answer == "6") {
-        resultText.innerHTML = "Правильно! Вы прошли тест!";
+function nextQuestion() {
+    if (currentQuestion < questions.length) {
+        document.getElementById("question-text").textContent = questions[currentQuestion];
+        currentQuestion++;
     } else {
-        resultText.innerHTML = "Неправильно. Попробуйте еще раз.";
+        alert("Вы прошли тест!");
     }
 }
