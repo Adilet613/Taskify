@@ -7,23 +7,17 @@ body {
 }
 
 .logo {
-    position: absolute;
-    top: 20%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     font-size: 36px;
     font-weight: bold;
     color: #333;
+    margin-top: 50px;
 }
 
-.role-selection, #customer-menu {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+.role-selection {
+    margin-top: 100px;
 }
 
-.role-button, .job-button, .back-button {
+.role-button {
     display: block;
     width: 200px;
     margin: 10px auto;
@@ -36,18 +30,27 @@ body {
     border-radius: 5px;
 }
 
-.role-button:hover, .job-button:hover {
+.role-button:hover {
     background-color: #0056b3;
-}
-
-.back-button {
-    background-color: #ff4d4d;
-}
-
-.back-button:hover {
-    background-color: #cc0000;
 }
 
 .hidden {
     display: none;
+}
+
+.answer-btn {
+    display: block;
+    width: 200px;
+    margin: 10px auto;
+    padding: 10px;
+    font-size: 18px;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.answer-btn:hover {
+    background-color: #45a049;
 }
