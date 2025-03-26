@@ -1,9 +1,9 @@
 function showCustomerMenu() {
-    document.querySelector('.role-selection').style.display = 'none';
-    document.getElementById('customer-menu').style.display = 'block';
+    document.getElementById("customer-menu").classList.remove("hidden");
+    document.getElementById("freelancer-test").classList.add("hidden");
 }
 
-function goBack() {
-    document.getElementById('customer-menu').style.display = 'none';
-    document.querySelector('.role-selection').style.display = 'block';
+function showFreelancerTest() {
+    document.getElementById("customer-menu").classList.add("hidden");
+    document.getElementById("freelancer-test").classList.remove("hidden");
 }
