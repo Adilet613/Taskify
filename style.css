@@ -1,23 +1,22 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f8f8f8;
+    background-color: #f9f9f9;
     margin: 0;
     padding: 0;
+}
+
+.container {
+    margin-top: 100px;
 }
 
 .logo {
     font-size: 36px;
     font-weight: bold;
-    color: #333;
-    margin-top: 50px;
+    margin-bottom: 20px;
 }
 
-.role-selection {
-    margin-top: 100px;
-}
-
-.role-button {
+.role-button, .work-button {
     display: block;
     width: 200px;
     margin: 10px auto;
@@ -30,27 +29,10 @@ body {
     border-radius: 5px;
 }
 
-.role-button:hover {
+.role-button:hover, .work-button:hover {
     background-color: #0056b3;
 }
 
 .hidden {
     display: none;
-}
-
-.answer-btn {
-    display: block;
-    width: 200px;
-    margin: 10px auto;
-    padding: 10px;
-    font-size: 18px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.answer-btn:hover {
-    background-color: #45a049;
 }
