@@ -8,26 +8,20 @@
 </head>
 <body>
 
-    <div id="roleSelection">
-        <h2>Выберите свою роль</h2>
-        <button onclick="selectRole('customer')">Я заказчик</button>
-        <button onclick="selectRole('freelancer')">Я фрилансер</button>
-    </div>
+    <header>
+        <h1>Taskify</h1>
+    </header>
 
-    <div id="workSelection" style="display: none;">
-        <h2>Выберите работу</h2>
-        <button onclick="selectWork('design')">Дизайн</button>
-        <button onclick="selectWork('programming')">Программирование</button>
-        <button onclick="selectWork('copywriting')">Копирайтинг</button>
-        <button onclick="selectWork('other')">Другое</button>
-    </div>
-
-    <div id="chatSection" style="display: none;">
-        <h2>Чат с фрилансерами</h2>
-        <p>Здесь вы сможете найти исполнителя для своей задачи.</p>
-    </div>
+    <main>
+        <div class="role-selection">
+            <h2>Выберите свою роль</h2>
+            <button class="role-button" onclick="showCustomerPage()">Я заказчик</button>
+            <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
+        </div>
+    </main>
 
     <script src="script.js"></script>
+    <script src="freelancer-test.js"></script>
 
 </body>
 </html>
