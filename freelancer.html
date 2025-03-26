@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taskify - Фрилансер</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Добро пожаловать, фрилансер!</h1>
+    </header>
+
+    <main>
+        <section id="verification">
+            <h2>Проверка навыков</h2>
+            <p>Пройдите тест, чтобы подтвердить свои навыки.</p>
+            <button onclick="startTest()">Начать тест</button>
+        </section>
+
+        <section id="orders" style="display: none;">
+            <h2>Доступные заказы</h2>
+            <p>Выберите подходящий заказ и начните работу.</p>
+            <ul>
+                <li>Создать логотип для компании <button>Откликнуться</button></li>
+                <li>Разработать сайт-визитку <button>Откликнуться</button></li>
+                <li>Написать статью на 1000 слов <button>Откликнуться</button></li>
+            </ul>
+        </section>
+    </main>
+
+    <script>
+        function startTest() {
+            alert("Тест еще не готов, но скоро будет!");
+            document.getElementById('verification').style.display = 'none';
+            document.getElementById('orders').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
