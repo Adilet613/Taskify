@@ -7,24 +7,28 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1 class="logo">Taskify</h1>
-
-    <div class="role-selection">
-        <button class="role-button" onclick="showCustomerMenu()">Я заказчик</button>
-        <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
+    <div class="container">
+        <h1 class="logo">Taskify</h1>
+        <div class="role-selection">
+            <button class="role-button" onclick="showCustomerOptions()">Я заказчик</button>
+            <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
+        </div>
+        <div id="job-selection" class="hidden">
+            <h2>Выберите работу</h2>
+            <button class="job-button" onclick="startChat('Программист')">Программист</button>
+            <button class="job-button" onclick="startChat('Дизайнер')">Дизайнер</button>
+            <button class="job-button" onclick="startChat('Копирайтер')">Копирайтер</button>
+            <button class="job-button" onclick="startChat('Маркетолог')">Маркетолог</button>
+        </div>
+        <div id="freelancer-test" class="hidden">
+            <h2>Тест на фрилансера</h2>
+            <p id="test-question">Здесь будет вопрос</p>
+            <input type="text" id="test-answer" placeholder="Ваш ответ">
+            <button onclick="checkFreelancerAnswer()">Ответить</button>
+            <button id="next-question" class="hidden" onclick="nextFreelancerQuestion()">Следующая задача</button>
+        </div>
     </div>
-
-    <div id="customer-menu" class="hidden">
-        <h2>Выберите работу:</h2>
-        <button class="job-button">Разработка сайта</button>
-        <button class="job-button">Дизайн</button>
-        <button class="job-button">Тексты</button>
-        <button class="job-button">Программирование</button>
-        <br>
-        <button class="back-button" onclick="goBack()">Назад</button>
-    </div>
-
-    <script src="freelancer-test.js"></script>
     <script src="script.js"></script>
+    <script src="freelancer-test.js"></script>
 </body>
 </html>
