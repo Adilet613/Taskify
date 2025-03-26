@@ -1,43 +1,26 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: #f5f7fa; /* Светлый фон */
     text-align: center;
-    padding: 20px;
-}
-
-h1 {
-    color: #333;
-    font-size: 28px;
+    margin: 50px;
+    background-color: #f8f9fa;
 }
 
 h2 {
-    color: #444;
-    font-size: 22px;
-    margin-top: 20px;
+    color: #333;
 }
 
 button {
-    background-color: #007bff; /* Яркий синий цвет */
-    color: white;
-    border: none;
     padding: 10px 20px;
-    margin: 10px;
     font-size: 18px;
+    margin: 10px;
     cursor: pointer;
-    border-radius: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #007bff;
+    color: white;
     transition: 0.3s;
 }
 
 button:hover {
-    background-color: #0056b3; /* Затемнение при наведении */
+    background-color: #0056b3;
 }
-
-input {
-    padding: 10px;
-    width: 60%;
-    font-size: 16px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    margin-top: 10px;
-}
-
