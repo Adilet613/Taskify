@@ -7,17 +7,27 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <header>
-        <h1>Taskify</h1>
-        <p>Платформа для фрилансеров и заказчиков</p>
-    </header>
-    
-    <main>
-        <section class="register">
-            <h2>Выберите вашу роль</h2>
-            <button class="role-btn">Я заказчик</button>
-            <button class="role-btn">Я мастер</button>
-        </section>
-    </main>
+
+    <div id="roleSelection">
+        <h2>Выберите свою роль</h2>
+        <button onclick="selectRole('customer')">Я заказчик</button>
+        <button onclick="selectRole('freelancer')">Я фрилансер</button>
+    </div>
+
+    <div id="workSelection" style="display: none;">
+        <h2>Выберите работу</h2>
+        <button onclick="selectWork('design')">Дизайн</button>
+        <button onclick="selectWork('programming')">Программирование</button>
+        <button onclick="selectWork('copywriting')">Копирайтинг</button>
+        <button onclick="selectWork('other')">Другое</button>
+    </div>
+
+    <div id="chatSection" style="display: none;">
+        <h2>Чат с фрилансерами</h2>
+        <p>Здесь вы сможете найти исполнителя для своей задачи.</p>
+    </div>
+
+    <script src="script.js"></script>
+
 </body>
 </html>
