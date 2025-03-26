@@ -1,21 +1,18 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify</title>
+    <title>Тест</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Добро пожаловать в Taskify</h1>
-        <p>Платформа для поиска проверенных специалистов.</p>
-        
-        <div class="buttons">
-            <a href="customer.html" class="btn">Я заказчик</a>
-            <a href="test.html" class="btn">Я фрилансер</a>
-        </div>
+    <h1>Тест на логику</h1>
+    <div id="test-container">
+        <h2 id="question">Загрузка...</h2>
+        <div id="answers"></div>
+        <button id="next-btn" onclick="nextQuestion()" class="hidden">Следующая задача</button>
     </div>
+    <script src="test.js"></script>
 </body>
 </html>
