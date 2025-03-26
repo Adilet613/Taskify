@@ -8,7 +8,7 @@ body {
 
 .logo {
     position: absolute;
-    top: 25%;
+    top: 20%;
     left: 50%;
     transform: translate(-50%, -50%);
     font-size: 36px;
@@ -16,14 +16,14 @@ body {
     color: #333;
 }
 
-.role-selection {
+.role-selection, #customer-menu {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 }
 
-.role-button {
+.role-button, .job-button, .back-button {
     display: block;
     width: 200px;
     margin: 10px auto;
@@ -36,6 +36,18 @@ body {
     border-radius: 5px;
 }
 
-.role-button:hover {
+.role-button:hover, .job-button:hover {
     background-color: #0056b3;
+}
+
+.back-button {
+    background-color: #ff4d4d;
+}
+
+.back-button:hover {
+    background-color: #cc0000;
+}
+
+.hidden {
+    display: none;
 }
