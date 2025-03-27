@@ -8,44 +8,52 @@
 </head>
 <body>
 
-    <h1 class="logo">Taskify</h1>
+    <h1>Добро пожаловать в Taskify</h1>
+    
+    <button id="customer-btn">Я заказчик</button>
+    <button id="freelancer-btn">Я фрилансер</button>
 
-    <div id="role-selection">
-        <button class="role-button" onclick="showCustomerOptions()">Я заказчик</button>
-        <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
-    </div>
-
+    <!-- Выбор работы заказчика -->
     <div id="customer-options" class="hidden">
-        <h2>Выберите работу:</h2>
-        <button class="job-button" onclick="showOrderForm('Разработка сайта')">Разработка сайта</button>
-        <button class="job-button" onclick="showOrderForm('Дизайн')">Дизайн</button>
-        <button class="job-button" onclick="showOrderForm('Копирайтинг')">Копирайтинг</button>
-        <button class="job-button" onclick="showOrderForm('Переводы')">Переводы</button>
+        <h2>Выберите работу</h2>
+        <button class="job-btn" data-job="Дизайнер">Дизайнер</button>
+        <button class="job-btn" data-job="Программист">Программист</button>
+        <button class="job-btn" data-job="Фрилансер">Фрилансер</button>
+        <button class="job-btn" data-job="Копирайтер">Копирайтер</button>
     </div>
 
+    <!-- Форма создания заказа -->
     <div id="order-form" class="hidden">
         <h2>Создать заказ</h2>
         <input type="text" id="order-title" placeholder="Название заказа">
         <textarea id="order-description" placeholder="Описание заказа"></textarea>
-        <button onclick="submitOrder()">Создать</button>
+        <button id="create-order">Опубликовать заказ</button>
     </div>
 
+    <!-- Тест для фрилансеров -->
     <div id="freelancer-test" class="hidden">
         <h2>Тест для фрилансеров</h2>
         <p id="test-question"></p>
-        <input type="text" id="test-answer">
+        <input type="text" id="test-answer" placeholder="Введите ответ">
         <button onclick="checkAnswer()">Ответить</button>
         <p id="test-feedback"></p>
         <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
     </div>
 
+    <!-- Профиль фрилансера -->
     <div id="freelancer-profile" class="hidden">
         <h2>Профиль фрилансера</h2>
         <p id="profile-name"></p>
         <p id="profile-status"></p>
+        <p id="profile-projects"></p>
+        <p id="profile-days"></p>
+        <div id="profile-reviews"></div>
+        <button id="go-to-orders">Перейти к заказам</button>
     </div>
 
     <script src="script.js"></script>
-    <script src="freelancer-test.js"></script>
+    <script src="freelancerTest.js"></script>
+    <script src="profile.js"></script>
+
 </body>
 </html>
