@@ -1,16 +1,20 @@
-function selectJob(job) {
-    document.getElementById('order-form').style.display = 'block';
-}
+document.addEventListener("DOMContentLoaded", function () {
+    const loginLink = document.querySelector("a[href='login.html']");
+    const registerLink = document.querySelector("a[href='register.html']");
+    const container = document.querySelector(".container");
 
-function publishOrder() {
-    let title = document.getElementById('order-title').value;
-    let description = document.getElementById('order-description').value;
-    let price = document.getElementById('order-price').value;
-    
-    if (title && description && price) {
-        localStorage.setItem('order', JSON.stringify({ title, description, price }));
-        alert('Заказ опубликован!');
-    } else {
-        alert('Заполните все поля');
+    const user = localStorage.getItem("user");
+
+    if (user) {
+        // Если пользователь вошел, показать кнопку "Выйти"
+        container.innerHTML += `<button id="logout">Выйти</button>`;
+        document.getElementById("logout").addEventListener("click", function () {
+            localStorage.removeItem("user");
+            location.reload();
+        });
+
+        // Убираем ссылки "Войти" и "Зарегистрироваться"
+        if (loginLink) loginLink.remove();
+        if (registerLink) registerLink.remove();
     }
-}
+});
