@@ -1,4 +1,3 @@
-<!-- Полный код index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -8,49 +7,52 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <h1>Taskify - Платформа для фрилансеров и заказчиков</h1>
-    
-    <div id="role-selection">
-        <button onclick="showCustomerOptions()">Я заказчик</button>
-        <button onclick="showFreelancerTest()">Я фрилансер</button>
+    <div id="registration">
+        <h2>Регистрация</h2>
+        <input type="text" id="username" placeholder="Введите имя">
+        <button onclick="register()">Зарегистрироваться</button>
     </div>
-    
-    <div id="customer-options" class="hidden">
-        <h2>Выберите услугу:</h2>
-        <button onclick="showOrderForm('Дизайнер')">Дизайнер</button>
-        <button onclick="showOrderForm('Фрилансер')">Фрилансер</button>
-        <button onclick="showOrderForm('Программист')">Программист</button>
-        <button onclick="showOrderForm('Копирайтер')">Копирайтер</button>
+
+    <div id="role-selection" class="hidden">
+        <h2>Выберите роль</h2>
+        <button onclick="selectRole('customer')">Я заказчик</button>
+        <button onclick="selectRole('freelancer')">Я фрилансер</button>
     </div>
-    
-    <div id="order-form" class="hidden">
-        <h2>Создать заказ</h2>
-        <input type="text" id="order-title" placeholder="Название заказа">
-        <textarea id="order-description" placeholder="Описание"></textarea>
-        <button onclick="publishOrder()">Опубликовать заказ</button>
-        <p id="order-status"></p>
+
+    <div id="customer-panel" class="hidden">
+        <h2>Заказы</h2>
+        <div id="order-list"></div>
+        <button onclick="showOrderForm()">Создать заказ</button>
+        <div id="order-form" class="hidden">
+            <input type="text" id="order-title" placeholder="Название заказа">
+            <select id="order-category">
+                <option value="design">Дизайн</option>
+                <option value="programming">Программирование</option>
+                <option value="writing">Копирайтинг</option>
+            </select>
+            <textarea id="order-description" placeholder="Описание"></textarea>
+            <button onclick="publishOrder()">Опубликовать</button>
+        </div>
     </div>
-    
-    <div id="freelancer-test" class="hidden">
+
+    <div id="freelancer-panel" class="hidden">
         <h2>Тест для фрилансеров</h2>
-        <p id="test-question"></p>
-        <input type="text" id="test-answer">
-        <button onclick="checkAnswer()">Ответить</button>
-        <p id="test-feedback"></p>
-        <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
+        <div id="freelancer-test"></div>
+        <button onclick="startFreelancerTest()">Пройти тест</button>
     </div>
-    
+
     <div id="freelancer-profile" class="hidden">
         <h2>Профиль фрилансера</h2>
-        <p id="profile-name">Имя: Фрилансер</p>
-        <p id="profile-status">Статус: Прошел тест</p>
-        <p id="profile-projects">Выполненных работ: 0</p>
-        <p id="profile-days">На сайте: 0 дней</p>
-        <div id="profile-reviews"><h3>Отзывы:</h3></div>
+        <p id="profile-name"></p>
+        <p id="profile-status"></p>
+        <p id="profile-projects"></p>
+        <p id="profile-days"></p>
+        <div id="profile-reviews"></div>
     </div>
-    
+
     <script src="script.js"></script>
-    <script src="freelancerTest.js"></script>
+    <script src="freelancer-test.js"></script>
     <script src="profile.js"></script>
+    <script src="orders.js"></script>
 </body>
 </html>
