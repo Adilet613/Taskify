@@ -1,3 +1,4 @@
+<!-- Полный код index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -7,53 +8,49 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <h1>Добро пожаловать в Taskify</h1>
+    <h1>Taskify - Платформа для фрилансеров и заказчиков</h1>
     
-    <button id="customer-btn">Я заказчик</button>
-    <button id="freelancer-btn">Я фрилансер</button>
-
-    <!-- Выбор работы заказчика -->
-    <div id="customer-options" class="hidden">
-        <h2>Выберите работу</h2>
-        <button class="job-btn" data-job="Дизайнер">Дизайнер</button>
-        <button class="job-btn" data-job="Программист">Программист</button>
-        <button class="job-btn" data-job="Фрилансер">Фрилансер</button>
-        <button class="job-btn" data-job="Копирайтер">Копирайтер</button>
+    <div id="role-selection">
+        <button onclick="showCustomerOptions()">Я заказчик</button>
+        <button onclick="showFreelancerTest()">Я фрилансер</button>
     </div>
-
-    <!-- Форма создания заказа -->
+    
+    <div id="customer-options" class="hidden">
+        <h2>Выберите услугу:</h2>
+        <button onclick="showOrderForm('Дизайнер')">Дизайнер</button>
+        <button onclick="showOrderForm('Фрилансер')">Фрилансер</button>
+        <button onclick="showOrderForm('Программист')">Программист</button>
+        <button onclick="showOrderForm('Копирайтер')">Копирайтер</button>
+    </div>
+    
     <div id="order-form" class="hidden">
         <h2>Создать заказ</h2>
         <input type="text" id="order-title" placeholder="Название заказа">
-        <textarea id="order-description" placeholder="Описание заказа"></textarea>
-        <button id="create-order">Опубликовать заказ</button>
+        <textarea id="order-description" placeholder="Описание"></textarea>
+        <button onclick="publishOrder()">Опубликовать заказ</button>
+        <p id="order-status"></p>
     </div>
-
-    <!-- Тест для фрилансеров -->
+    
     <div id="freelancer-test" class="hidden">
         <h2>Тест для фрилансеров</h2>
         <p id="test-question"></p>
-        <input type="text" id="test-answer" placeholder="Введите ответ">
+        <input type="text" id="test-answer">
         <button onclick="checkAnswer()">Ответить</button>
         <p id="test-feedback"></p>
         <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
     </div>
-
-    <!-- Профиль фрилансера -->
+    
     <div id="freelancer-profile" class="hidden">
         <h2>Профиль фрилансера</h2>
-        <p id="profile-name"></p>
-        <p id="profile-status"></p>
-        <p id="profile-projects"></p>
-        <p id="profile-days"></p>
-        <div id="profile-reviews"></div>
-        <button id="go-to-orders">Перейти к заказам</button>
+        <p id="profile-name">Имя: Фрилансер</p>
+        <p id="profile-status">Статус: Прошел тест</p>
+        <p id="profile-projects">Выполненных работ: 0</p>
+        <p id="profile-days">На сайте: 0 дней</p>
+        <div id="profile-reviews"><h3>Отзывы:</h3></div>
     </div>
-
+    
     <script src="script.js"></script>
     <script src="freelancerTest.js"></script>
     <script src="profile.js"></script>
-
 </body>
 </html>
