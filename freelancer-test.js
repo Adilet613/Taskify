@@ -6,6 +6,13 @@ let questions = [
 
 let currentQuestion = 0;
 
+function startTest() {
+    document.getElementById("question-text").textContent = questions[currentQuestion].question;
+    document.getElementById("answer-input").value = "";
+    document.getElementById("result-message").textContent = "";
+    document.getElementById("next-button").classList.add("hidden");
+}
+
 function checkAnswer() {
     let userAnswer = document.getElementById("answer-input").value.trim().toLowerCase();
     let correctAnswer = questions[currentQuestion].answer.toLowerCase();
@@ -21,11 +28,11 @@ function checkAnswer() {
 function nextQuestion() {
     currentQuestion++;
     if (currentQuestion < questions.length) {
-        document.getElementById("question-text").textContent = questions[currentQuestion].question;
-        document.getElementById("answer-input").value = "";
-        document.getElementById("result-message").textContent = "";
-        document.getElementById("next-button").classList.add("hidden");
+        startTest();
     } else {
-        alert("Вы прошли тест!");
+        document.getElementById("freelancer-test").innerHTML = "<h2>Вы успешно прошли тест!</h2>";
     }
 }
+
+// Запускаем тест сразу при открытии
+document.addEventListener("DOMContentLoaded", startTest);
