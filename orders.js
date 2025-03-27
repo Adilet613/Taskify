@@ -1,28 +1,26 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    let ordersContainer = document.getElementById("orders-container");
-    let publishButton = document.getElementById("publish-order");
-    let orderInput = document.getElementById("order-input");
-    
-    function displayOrders() {
-        ordersContainer.innerHTML = "";
-        orders.forEach(order => {
-            let orderElement = document.createElement("div");
-            orderElement.classList.add("order");
-            orderElement.innerHTML = `<p>${order}</p>`;
-            ordersContainer.appendChild(orderElement);
+    const ordersList = document.getElementById("orders-list");
+    const createOrderBtn = document.getElementById("create-order-btn");
+    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    function renderOrders() {
+        ordersList.innerHTML = "";
+        orders.forEach((order, index) => {
+            const orderElement = document.createElement("div");
+            orderElement.innerText = `${index + 1}. ${order.title} - ${order.description}`;
+            ordersList.appendChild(orderElement);
         });
     }
-    
-    publishButton.addEventListener("click", function () {
-        let newOrder = orderInput.value.trim();
-        if (newOrder !== "") {
-            orders.push(newOrder);
+
+    createOrderBtn.addEventListener("click", function () {
+        const title = prompt("Введите заголовок заказа:");
+        const description = prompt("Введите описание заказа:");
+        if (title && description) {
+            orders.push({ title, description });
             localStorage.setItem("orders", JSON.stringify(orders));
-            orderInput.value = "";
-            displayOrders();
+            renderOrders();
         }
     });
-    
-    displayOrders();
+
+    renderOrders();
 });
