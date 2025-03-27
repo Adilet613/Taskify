@@ -1,23 +1,21 @@
 function showCustomerOptions() {
+    document.getElementById("role-selection").classList.add("hidden");
     document.getElementById("customer-options").classList.remove("hidden");
-    document.getElementById("order-form").classList.add("hidden");
-    document.getElementById("freelancer-test").classList.add("hidden");
 }
 
-function showOrderForm(jobType) {
+function showFreelancerTest() {
+    document.getElementById("role-selection").classList.add("hidden");
+    document.getElementById("freelancer-test").classList.remove("hidden");
+    startTest();
+}
+
+function showOrderForm(workType) {
     document.getElementById("customer-options").classList.add("hidden");
     document.getElementById("order-form").classList.remove("hidden");
+    document.getElementById("selected-work").textContent = workType;
 }
 
 function submitOrder() {
-    let title = document.getElementById("order-title").value;
-    let description = document.getElementById("order-description").value;
-    
-    if (title.trim() === "" || description.trim() === "") {
-        alert("Заполните все поля!");
-        return;
-    }
-
-    alert("Заказ размещен: " + title);
-    document.getElementById("order-form").classList.add("hidden");
+    alert("Ваш заказ отправлен!");
+    location.reload();
 }
