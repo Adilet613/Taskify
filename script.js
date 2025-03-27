@@ -8,6 +8,7 @@ function showFreelancerTest() {
     document.getElementById("customer-menu").classList.add("hidden");
     document.getElementById("work-description").classList.add("hidden");
     document.getElementById("freelancer-test").classList.remove("hidden");
+    startTest(); // Запускаем тест
 }
 
 function selectWork(work) {
