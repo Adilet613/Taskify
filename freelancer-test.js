@@ -9,8 +9,9 @@ let questions = [
 ];
 
 let currentQuestionIndex = 0;
-let completedProjects = Math.floor(Math.random() * 20) + 1; // Случайное количество работ (от 1 до 20)
-let daysOnSite = Math.floor(Math.random() * 365) + 1; // Сколько дней на сайте (от 1 до 365)
+let completedProjects = Math.floor(Math.random() * 20) + 1; // Случайное количество работ (1-20)
+let daysOnSite = Math.floor(Math.random() * 365) + 1; // Сколько дней на сайте (1-365)
+
 let reviews = [
     { name: "Алексей", rating: 5, comment: "Отличный фрилансер! Быстро справился с задачей." },
     { name: "Марина", rating: 4, comment: "Хорошая работа, но были небольшие задержки." },
@@ -31,7 +32,7 @@ function loadQuestion() {
         document.getElementById("test-feedback").innerText = "";
         document.getElementById("next-question").classList.add("hidden");
     } else {
-        showFreelancerProfile();
+        saveFreelancerData();
     }
 }
 
@@ -52,21 +53,11 @@ function nextQuestion() {
     loadQuestion();
 }
 
-function showFreelancerProfile() {
-    document.getElementById("freelancer-test").classList.add("hidden");
-    document.getElementById("freelancer-profile").classList.remove("hidden");
-
-    document.getElementById("profile-name").innerText = "Фрилансер";
-    document.getElementById("profile-status").innerText = "Вы успешно прошли тест!";
-    document.getElementById("profile-projects").innerText = `Выполненных работ: ${completedProjects}`;
-    document.getElementById("profile-days").innerText = `На сайте: ${daysOnSite} дней`;
-
-    let reviewsContainer = document.getElementById("profile-reviews");
-    reviewsContainer.innerHTML = "<h3>Отзывы:</h3>";
-
-    reviews.forEach(review => {
-        let reviewElement = document.createElement("p");
-        reviewElement.innerHTML = `<strong>${review.name}</strong> (${review.rating}/5): ${review.comment}`;
-        reviewsContainer.appendChild(reviewElement);
-    });
+// Сохранение данных и переход в профиль
+function saveFreelancerData() {
+    localStorage.setItem("completedProjects", completedProjects);
+    localStorage.setItem("daysOnSite", daysOnSite);
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+    
+    window.location.href = "profile.html"; // Переход в профиль
 }
