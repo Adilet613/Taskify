@@ -3,23 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фрилансер - Тест</title>
+    <title>Фрилансер Тест</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div class="container">
-        <h1>Тест для фрилансеров</h1>
+        <h1>Тест фрилансера</h1>
+
         <div id="question-container">
-            <p id="question"></p>
-            <div id="options">
-                <button id="optionA"></button>
-                <button id="optionB"></button>
-                <button id="optionC"></button>
-            </div>
+            <!-- Вопросы и ответы будут добавляться через JS -->
         </div>
-        <p id="feedback"></p>
-        <button id="nextButton" style="display:none;">Следующий вопрос</button>
+
+        <button id="submit-answer-btn" onclick="submitAnswer()">Ответить</button>
+        <button id="next-question-btn" onclick="nextQuestion()" style="display: none;">Следующий вопрос</button>
     </div>
+
     <script src="freelancer-test.js"></script>
 </body>
 </html>
