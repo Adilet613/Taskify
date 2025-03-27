@@ -1,10 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
-    let username = localStorage.getItem("username") || "Аноним";
     let completedProjects = localStorage.getItem("completedProjects") || "0";
     let daysOnSite = localStorage.getItem("daysOnSite") || "0";
     let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
-    document.getElementById("profile-name").innerText = `Имя: ${username}`;
     document.getElementById("profile-projects").innerText = `Выполненных работ: ${completedProjects}`;
     document.getElementById("profile-days").innerText = `На сайте: ${daysOnSite} дней`;
 
