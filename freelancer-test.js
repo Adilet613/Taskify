@@ -1,50 +1,54 @@
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <h1 class="centered">Taskify</h1>
-    
-    <div id="role-selection">
-        <button class="role-button" onclick="showCustomerOptions()">Я заказчик</button>
-        <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
-    </div>
-    
-    <div id="customer-options" class="hidden">
-        <h2>Выберите категорию работы</h2>
-        <button onclick="showOrderForm('Разработка')">Разработка</button>
-        <button onclick="showOrderForm('Дизайн')">Дизайн</button>
-        <button onclick="showOrderForm('Копирайтинг')">Копирайтинг</button>
-        <button onclick="showOrderForm('Маркетинг')">Маркетинг</button>
-    </div>
-    
-    <div id="order-form" class="hidden">
-        <h2>Создание заказа</h2>
-        <input type="text" id="order-title" placeholder="Название заказа">
-        <textarea id="order-description" placeholder="Описание заказа"></textarea>
-        <button onclick="submitOrder()">Опубликовать заказ</button>
-    </div>
-    
-    <div id="freelancer-test" class="hidden">
-        <h2>Тест для фрилансеров</h2>
-        <p id="test-question"></p>
-        <input type="text" id="test-answer">
-        <button onclick="checkAnswer()">Вывести ответ</button>
-        <p id="test-feedback"></p>
-        <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
-    </div>
-    
-    <div id="freelancer-profile" class="hidden">
-        <h2>Профиль фрилансера</h2>
-        <p id="profile-name">Фрилансер</p>
-        <p id="profile-status">Вы успешно прошли тест!</p>
-    </div>
-    
-    <script src="script.js"></script>
-    <script src="freelancer-test.js"></script>
-</body>
-</html>
+let questions = [
+    { question: "Как называется язык разметки веб-страниц?", answer: "HTML" },
+    { question: "Как называется язык программирования для создания стилей?", answer: "CSS" },
+    { question: "Какой язык программирования используется для веб-разработки?", answer: "JavaScript" },
+    { question: "Что означает сокращение HTTP?", answer: "HyperText Transfer Protocol" },
+    { question: "Как называется база данных, часто используемая в веб-разработке?", answer: "MySQL" },
+    { question: "Какой метод в JavaScript используется для вывода в консоль?", answer: "console.log" },
+    { question: "Как называется язык запросов к базе данных?", answer: "SQL" }
+];
+
+let currentQuestionIndex = 0;
+
+function showFreelancerTest() {
+    document.getElementById("role-selection").classList.add("hidden");
+    document.getElementById("freelancer-test").classList.remove("hidden");
+
+    loadQuestion();
+}
+
+function loadQuestion() {
+    if (currentQuestionIndex < questions.length) {
+        document.getElementById("test-question").innerText = questions[currentQuestionIndex].question;
+        document.getElementById("test-answer").value = "";
+        document.getElementById("test-feedback").innerText = "";
+        document.getElementById("next-question").classList.add("hidden");
+    } else {
+        showFreelancerProfile();
+    }
+}
+
+function checkAnswer() {
+    let userAnswer = document.getElementById("test-answer").value.trim();
+    let correctAnswer = questions[currentQuestionIndex].answer;
+
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        document.getElementById("test-feedback").innerText = "Правильно!";
+        document.getElementById("next-question").classList.remove("hidden");
+    } else {
+        document.getElementById("test-feedback").innerText = "Неправильно. Попробуйте еще раз!";
+    }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
+}
+
+function showFreelancerProfile() {
+    document.getElementById("freelancer-test").classList.add("hidden");
+    document.getElementById("freelancer-profile").classList.remove("hidden");
+
+    document.getElementById("profile-name").innerText = "Фрилансер";
+    document.getElementById("profile-status").innerText = "Вы успешно прошли тест!";
+}
