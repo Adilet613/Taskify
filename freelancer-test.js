@@ -1,95 +1,76 @@
-// Пример вопросов для фрилансера
+let currentQuestionIndex = 0;
 const questions = [
     {
-        question: "Как создать переменную в JavaScript?",
+        question: "Что такое HTML?",
         options: {
-            a: "var myVar;",
-            b: "variable myVar;",
-            c: "create myVar;"
-        },
-        correctAnswer: "a"
-    },
-    {
-        question: "Как вывести сообщение в консоль?",
-        options: {
-            a: "alert('Hello World');",
-            b: "console.log('Hello World');",
-            c: "print('Hello World');"
+            a: "Язык программирования",
+            b: "Язык разметки",
+            c: "Операционная система"
         },
         correctAnswer: "b"
     },
     {
-        question: "Как объявить функцию в JavaScript?",
+        question: "Что такое CSS?",
         options: {
-            a: "function myFunction() {}",
-            b: "func myFunction() {}",
-            c: "declare myFunction() {}"
-        },
-        correctAnswer: "a"
-    },
-    {
-        question: "Что означает 'undefined' в JavaScript?",
-        options: {
-            a: "Переменная не была объявлена.",
-            b: "Переменная была объявлена, но ей не присвоено значение.",
-            c: "Переменная была присвоена значению null."
+            a: "Язык программирования",
+            b: "Язык для стилизации",
+            c: "Система управления базами данных"
         },
         correctAnswer: "b"
     },
     {
-        question: "Как создать объект в JavaScript?",
+        question: "Что такое JavaScript?",
         options: {
-            a: "var obj = {};",
-            b: "var obj = new Object();",
-            c: "var obj = object();"
+            a: "Язык программирования для динамических страниц",
+            b: "Язык разметки",
+            c: "Язык для оформления страниц"
         },
         correctAnswer: "a"
-    }
+    },
+    // Добавь еще вопросы здесь
 ];
-
-let currentQuestionIndex = 0;
-
-function startTest() {
-    document.querySelector('button').style.display = 'none'; // Скрыть кнопку начала теста
-    document.getElementById('test-container').style.display = 'block'; // Показать контейнер с вопросами
-    showQuestion();
-}
 
 function showQuestion() {
     const question = questions[currentQuestionIndex];
     const questionContainer = document.getElementById('question-container');
     questionContainer.innerHTML = `
         <p>${question.question}</p>
-        <p><input type="radio" name="answer" value="a"> ${question.options.a}</p>
-        <p><input type="radio" name="answer" value="b"> ${question.options.b}</p>
-        <p><input type="radio" name="answer" value="c"> ${question.options.c}</p>
+        <ul>
+            <li><input type="radio" name="answer" value="a"> ${question.options.a}</li>
+            <li><input type="radio" name="answer" value="b"> ${question.options.b}</li>
+            <li><input type="radio" name="answer" value="c"> ${question.options.c}</li>
+        </ul>
     `;
+}
 
-    // Скрыть кнопку "Следующий вопрос" в начале
-    document.getElementById('next-question').style.display = 'none';
+function submitAnswer() {
+    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
+    if (selectedAnswer) {
+        const answerValue = selectedAnswer.value;
+        const correctAnswer = questions[currentQuestionIndex].correctAnswer;
+        
+        if (answerValue === correctAnswer) {
+            alert('Правильный ответ!');
+            document.getElementById('next-question-btn').style.display = 'block';
+            document.getElementById('submit-answer-btn').style.display = 'none';
+        } else {
+            alert('Неправильный ответ, попробуйте снова!');
+        }
+    } else {
+        alert('Пожалуйста, выберите ответ!');
+    }
 }
 
 function nextQuestion() {
-    const selectedOption = document.querySelector('input[name="answer"]:checked');
-    if (selectedOption && selectedOption.value === questions[currentQuestionIndex].correctAnswer) {
-        alert('Правильный ответ!');
-    } else {
-        alert('Неправильный ответ. Попробуйте снова.');
-        return;
-    }
-
-    // Переход к следующему вопросу или завершение теста
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
-        document.getElementById('next-question').style.display = 'none'; // Скрыть кнопку на время перехода
+        document.getElementById('submit-answer-btn').style.display = 'inline-block';
+        document.getElementById('next-question-btn').style.display = 'none';
     } else {
         alert('Тест завершен!');
-        // Добавить функционал для отображения результатов теста
+        window.location.href = "tasks.html"; // Переходим к списку задач
     }
 }
 
-// Показываем кнопку "Следующий вопрос" только если ответ правильный
-function showNextButton() {
-    document.getElementById('next-question').style.display = 'block';
-}
+showQuestion();  // Показать первый вопрос при загрузке страницы
