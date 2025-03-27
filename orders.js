@@ -1,29 +1,28 @@
 document.addEventListener("DOMContentLoaded", function () {
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    let ordersList = document.getElementById("orders-list");
+    let ordersContainer = document.getElementById("orders-container");
+    let publishButton = document.getElementById("publish-order");
+    let orderInput = document.getElementById("order-input");
     
-    if (orders.length === 0) {
-        ordersList.innerHTML = "<p>Пока нет доступных заказов.</p>";
-        return;
+    function displayOrders() {
+        ordersContainer.innerHTML = "";
+        orders.forEach(order => {
+            let orderElement = document.createElement("div");
+            orderElement.classList.add("order");
+            orderElement.innerHTML = `<p>${order}</p>`;
+            ordersContainer.appendChild(orderElement);
+        });
     }
     
-    orders.forEach(order => {
-        let orderElement = document.createElement("div");
-        orderElement.classList.add("order-item");
-        orderElement.innerHTML = `
-            <h3>${order.title}</h3>
-            <p><strong>Категория:</strong> ${order.category}</p>
-            <p><strong>Описание:</strong> ${order.description}</p>
-            <p><strong>Оплата:</strong> ${order.price} USD</p>
-            <button class="apply-button" data-order-id="${order.id}">Откликнуться</button>
-        `;
-        ordersList.appendChild(orderElement);
+    publishButton.addEventListener("click", function () {
+        let newOrder = orderInput.value.trim();
+        if (newOrder !== "") {
+            orders.push(newOrder);
+            localStorage.setItem("orders", JSON.stringify(orders));
+            orderInput.value = "";
+            displayOrders();
+        }
     });
-
-    document.querySelectorAll(".apply-button").forEach(button => {
-        button.addEventListener("click", function () {
-            let orderId = this.getAttribute("data-order-id");
-            alert(`Вы откликнулись на заказ ${orderId}`);
-        });
-    });
+    
+    displayOrders();
 });
