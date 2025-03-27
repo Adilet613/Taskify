@@ -9,21 +9,6 @@ let questions = [
 ];
 
 let currentQuestionIndex = 0;
-let completedProjects = Math.floor(Math.random() * 20) + 1; // Случайное количество работ (1-20)
-let daysOnSite = Math.floor(Math.random() * 365) + 1; // Сколько дней на сайте (1-365)
-
-let reviews = [
-    { name: "Алексей", rating: 5, comment: "Отличный фрилансер! Быстро справился с задачей." },
-    { name: "Марина", rating: 4, comment: "Хорошая работа, но были небольшие задержки." },
-    { name: "Игорь", rating: 5, comment: "Рекомендую! Всё сделал качественно." },
-];
-
-function showFreelancerTest() {
-    document.getElementById("role-selection").classList.add("hidden");
-    document.getElementById("freelancer-test").classList.remove("hidden");
-
-    loadQuestion();
-}
 
 function loadQuestion() {
     if (currentQuestionIndex < questions.length) {
@@ -32,7 +17,7 @@ function loadQuestion() {
         document.getElementById("test-feedback").innerText = "";
         document.getElementById("next-question").classList.add("hidden");
     } else {
-        saveFreelancerData();
+        showFreelancerProfile();
     }
 }
 
@@ -53,11 +38,7 @@ function nextQuestion() {
     loadQuestion();
 }
 
-// Сохранение данных и переход в профиль
-function saveFreelancerData() {
-    localStorage.setItem("completedProjects", completedProjects);
-    localStorage.setItem("daysOnSite", daysOnSite);
-    localStorage.setItem("reviews", JSON.stringify(reviews));
-    
-    window.location.href = "profile.html"; // Переход в профиль
+function showFreelancerProfile() {
+    document.getElementById("freelancer-test").classList.add("hidden");
+    document.getElementById("freelancer-profile").classList.remove("hidden");
 }
