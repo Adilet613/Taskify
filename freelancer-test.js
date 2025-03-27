@@ -1,57 +1,49 @@
-const questions = [
-    {
-        question: "Что означает HTML?",
-        answers: ["Hyper Text Markup Language", "High Tech Modern Language", "Home Tool Markup Language"],
-        correct: 0
-    },
-    {
-        question: "Как называется язык программирования для создания стилей?",
-        answers: ["CSS", "JavaScript", "Python"],
-        correct: 0
-    },
-    {
-        question: "Какой тег используется для создания ссылки в HTML?",
-        answers: ["<a>", "<link>", "<url>"],
-        correct: 0
-    }
+let questions = [
+    { question: "Как называется язык разметки веб-страниц?", answer: "HTML" },
+    { question: "Как называется язык программирования для создания стилей?", answer: "CSS" },
+    { question: "Какой язык программирования используется для веб-разработки?", answer: "JavaScript" },
+    { question: "Что означает сокращение HTTP?", answer: "HyperText Transfer Protocol" },
+    { question: "Как называется база данных, часто используемая в веб-разработке?", answer: "MySQL" },
+    { question: "Какой метод в JavaScript используется для вывода в консоль?", answer: "console.log" },
+    { question: "Как называется язык запросов к базе данных?", answer: "SQL" }
 ];
 
 let currentQuestionIndex = 0;
 
 function showFreelancerTest() {
-    document.getElementById("main-menu").style.display = "none";
-    document.getElementById("freelancer-test").style.display = "block";
+    document.getElementById("customer-options").classList.add("hidden");
+    document.getElementById("order-form").classList.add("hidden");
+    document.getElementById("freelancer-test").classList.remove("hidden");
+    
     loadQuestion();
 }
 
 function loadQuestion() {
-    if (currentQuestionIndex >= questions.length) {
-        alert("Тест пройден! Переход в профиль...");
-        window.location.href = "profile.html"; // Переход на страницу профиля
-        return;
+    if (currentQuestionIndex < questions.length) {
+        document.getElementById("test-question").innerText = questions[currentQuestionIndex].question;
+        document.getElementById("test-answer").value = "";
+        document.getElementById("test-feedback").innerText = "";
+        document.getElementById("next-question").classList.add("hidden");
+    } else {
+        document.getElementById("test-question").innerText = "Тест завершен!";
+        document.getElementById("test-answer").style.display = "none";
+        document.getElementById("next-question").style.display = "none";
     }
-
-    const questionData = questions[currentQuestionIndex];
-    document.getElementById("question-text").innerText = questionData.question;
-
-    const answersContainer = document.getElementById("answers");
-    answersContainer.innerHTML = "";
-
-    questionData.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.innerText = answer;
-        button.className = "answer-button";
-        button.onclick = () => checkAnswer(index);
-        answersContainer.appendChild(button);
-    });
 }
 
-function checkAnswer(selectedIndex) {
-    const questionData = questions[currentQuestionIndex];
-    if (selectedIndex === questionData.correct) {
-        currentQuestionIndex++;
-        loadQuestion();
+function checkAnswer() {
+    let userAnswer = document.getElementById("test-answer").value.trim();
+    let correctAnswer = questions[currentQuestionIndex].answer;
+
+    if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
+        document.getElementById("test-feedback").innerText = "Правильно!";
+        document.getElementById("next-question").classList.remove("hidden");
     } else {
-        alert("Неправильный ответ. Попробуйте еще раз.");
+        document.getElementById("test-feedback").innerText = "Неправильно. Попробуйте еще раз!";
     }
+}
+
+function nextQuestion() {
+    currentQuestionIndex++;
+    loadQuestion();
 }
