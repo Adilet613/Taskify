@@ -4,41 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskify</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div id="registration">
-        <h2>Регистрация</h2>
-        <input type="text" id="username" placeholder="Введите имя">
-        <button onclick="register()">Зарегистрироваться</button>
-    </div>
 
-    <div id="role-selection" class="hidden">
+    <div id="role-selection">
         <h2>Выберите роль</h2>
-        <button onclick="selectRole('customer')">Я заказчик</button>
-        <button onclick="selectRole('freelancer')">Я фрилансер</button>
+        <button id="customer-btn">Я заказчик</button>
+        <button id="freelancer-btn">Я фрилансер</button>
     </div>
 
-    <div id="customer-panel" class="hidden">
-        <h2>Заказы</h2>
-        <div id="order-list"></div>
-        <button onclick="showOrderForm()">Создать заказ</button>
-        <div id="order-form" class="hidden">
-            <input type="text" id="order-title" placeholder="Название заказа">
+    <div id="customer-section" class="hidden">
+        <h2>Панель заказчика</h2>
+        <form id="order-form">
+            <input type="text" id="order-title" placeholder="Название заказа" required>
+            <textarea id="order-description" placeholder="Описание заказа" required></textarea>
             <select id="order-category">
-                <option value="design">Дизайн</option>
-                <option value="programming">Программирование</option>
-                <option value="writing">Копирайтинг</option>
+                <option value="Дизайн">Дизайн</option>
+                <option value="Программирование">Программирование</option>
+                <option value="Копирайтинг">Копирайтинг</option>
             </select>
-            <textarea id="order-description" placeholder="Описание"></textarea>
-            <button onclick="publishOrder()">Опубликовать</button>
-        </div>
+            <button type="submit">Опубликовать заказ</button>
+        </form>
+        <div id="orders-container"></div>
     </div>
 
-    <div id="freelancer-panel" class="hidden">
-        <h2>Тест для фрилансеров</h2>
+    <div id="freelancer-section" class="hidden">
+        <h2>Тестирование фрилансера</h2>
         <div id="freelancer-test"></div>
-        <button onclick="startFreelancerTest()">Пройти тест</button>
     </div>
 
     <div id="freelancer-profile" class="hidden">
@@ -51,8 +44,9 @@
     </div>
 
     <script src="script.js"></script>
-    <script src="freelancer-test.js"></script>
-    <script src="profile.js"></script>
     <script src="orders.js"></script>
+    <script src="freelancerTest.js"></script>
+    <script src="profile.js"></script>
+
 </body>
 </html>
