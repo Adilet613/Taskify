@@ -3,37 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify</title>
+    <title>Taskify - Маркетплейс фриланс-услуг</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <div id="role-selection">
-        <h2>Выберите роль</h2>
-        <button id="customer-btn">Я заказчик</button>
-        <button id="freelancer-btn">Я фрилансер</button>
+    <h1>Добро пожаловать в Taskify</h1>
+    <button onclick="showCustomerOptions()">Я заказчик</button>
+    <button onclick="showFreelancerTest()">Я фрилансер</button>
+    
+    <div id="customer-options" class="hidden">
+        <h2>Заказчик</h2>
+        <button onclick="showOrderForm()">Опубликовать заказ</button>
+        <button onclick="viewOrders()">Посмотреть заказы</button>
     </div>
-
-    <div id="customer-section" class="hidden">
-        <h2>Панель заказчика</h2>
-        <form id="order-form">
-            <input type="text" id="order-title" placeholder="Название заказа" required>
-            <textarea id="order-description" placeholder="Описание заказа" required></textarea>
-            <select id="order-category">
-                <option value="Дизайн">Дизайн</option>
-                <option value="Программирование">Программирование</option>
-                <option value="Копирайтинг">Копирайтинг</option>
-            </select>
-            <button type="submit">Опубликовать заказ</button>
-        </form>
-        <div id="orders-container"></div>
+    
+    <div id="freelancer-test" class="hidden">
+        <h2>Тест для фрилансеров</h2>
+        <p id="test-question"></p>
+        <input type="text" id="test-answer">
+        <button onclick="checkAnswer()">Ответить</button>
+        <p id="test-feedback"></p>
+        <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
     </div>
-
-    <div id="freelancer-section" class="hidden">
-        <h2>Тестирование фрилансера</h2>
-        <div id="freelancer-test"></div>
-    </div>
-
+    
     <div id="freelancer-profile" class="hidden">
         <h2>Профиль фрилансера</h2>
         <p id="profile-name"></p>
@@ -41,12 +33,9 @@
         <p id="profile-projects"></p>
         <p id="profile-days"></p>
         <div id="profile-reviews"></div>
+        <button onclick="viewOrders()">Перейти к заказам</button>
     </div>
-
+    
     <script src="script.js"></script>
-    <script src="orders.js"></script>
-    <script src="freelancerTest.js"></script>
-    <script src="profile.js"></script>
-
 </body>
 </html>
