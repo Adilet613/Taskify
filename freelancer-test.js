@@ -1,4 +1,4 @@
-let currentQuestionIndex = 0;
+let currentQuestionIndex = 0;  // Индекс текущего вопроса
 const questions = [
     {
         question: "Что такое HTML?",
@@ -7,7 +7,7 @@ const questions = [
             b: "Язык разметки",
             c: "Операционная система"
         },
-        correctAnswer: "b"
+        correctAnswer: "b"  // Правильный ответ
     },
     {
         question: "Что такое CSS?",
@@ -27,7 +27,7 @@ const questions = [
         },
         correctAnswer: "a"
     },
-    // Добавь еще вопросы здесь
+    // Добавь еще вопросы, если нужно
 ];
 
 function showQuestion() {
@@ -69,8 +69,9 @@ function nextQuestion() {
         document.getElementById('next-question-btn').style.display = 'none';
     } else {
         alert('Тест завершен!');
-        window.location.href = "tasks.html"; // Переходим к списку задач
+        window.location.href = "tasks.html"; // Переход к списку задач
     }
 }
 
-showQuestion();  // Показать первый вопрос при загрузке страницы
+// Показываем первый вопрос при загрузке страницы
+showQuestion();
