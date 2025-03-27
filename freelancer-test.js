@@ -14,7 +14,8 @@ function showFreelancerTest() {
     document.getElementById("customer-options").classList.add("hidden");
     document.getElementById("order-form").classList.add("hidden");
     document.getElementById("freelancer-test").classList.remove("hidden");
-    
+    document.getElementById("freelancer-profile").classList.add("hidden");
+
     loadQuestion();
 }
 
@@ -25,9 +26,7 @@ function loadQuestion() {
         document.getElementById("test-feedback").innerText = "";
         document.getElementById("next-question").classList.add("hidden");
     } else {
-        document.getElementById("test-question").innerText = "Тест завершен!";
-        document.getElementById("test-answer").style.display = "none";
-        document.getElementById("next-question").style.display = "none";
+        showFreelancerProfile(); // Показываем профиль после теста
     }
 }
 
@@ -46,4 +45,12 @@ function checkAnswer() {
 function nextQuestion() {
     currentQuestionIndex++;
     loadQuestion();
+}
+
+function showFreelancerProfile() {
+    document.getElementById("freelancer-test").classList.add("hidden");
+    document.getElementById("freelancer-profile").classList.remove("hidden");
+
+    document.getElementById("profile-name").innerText = "Фрилансер";
+    document.getElementById("profile-status").innerText = "Вы успешно прошли тест!";
 }
