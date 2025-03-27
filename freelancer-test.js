@@ -18,7 +18,33 @@ const questions = [
         },
         correctAnswer: "b"
     },
-    // Добавь другие вопросы по необходимости
+    {
+        question: "Как объявить функцию в JavaScript?",
+        options: {
+            a: "function myFunction() {}",
+            b: "func myFunction() {}",
+            c: "declare myFunction() {}"
+        },
+        correctAnswer: "a"
+    },
+    {
+        question: "Что означает 'undefined' в JavaScript?",
+        options: {
+            a: "Переменная не была объявлена.",
+            b: "Переменная была объявлена, но ей не присвоено значение.",
+            c: "Переменная была присвоена значению null."
+        },
+        correctAnswer: "b"
+    },
+    {
+        question: "Как создать объект в JavaScript?",
+        options: {
+            a: "var obj = {};",
+            b: "var obj = new Object();",
+            c: "var obj = object();"
+        },
+        correctAnswer: "a"
+    }
 ];
 
 let currentQuestionIndex = 0;
@@ -39,8 +65,8 @@ function showQuestion() {
         <p><input type="radio" name="answer" value="c"> ${question.options.c}</p>
     `;
 
-    // Показать кнопку "Следующий вопрос"
-    document.getElementById('next-question').style.display = 'block';
+    // Скрыть кнопку "Следующий вопрос" в начале
+    document.getElementById('next-question').style.display = 'none';
 }
 
 function nextQuestion() {
@@ -49,13 +75,21 @@ function nextQuestion() {
         alert('Правильный ответ!');
     } else {
         alert('Неправильный ответ. Попробуйте снова.');
+        return;
     }
 
     // Переход к следующему вопросу или завершение теста
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
         showQuestion();
+        document.getElementById('next-question').style.display = 'none'; // Скрыть кнопку на время перехода
     } else {
         alert('Тест завершен!');
+        // Добавить функционал для отображения результатов теста
     }
+}
+
+// Показываем кнопку "Следующий вопрос" только если ответ правильный
+function showNextButton() {
+    document.getElementById('next-question').style.display = 'block';
 }
