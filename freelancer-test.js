@@ -1,5 +1,5 @@
 let questions = [
-    { question: "Сколько будет 2 + 2?", answer: "4" },
+    { question: "Сколько будет 2 + 2 * 2?", answer: "6" },
     { question: "Какой тег используется для ссылки в HTML?", answer: "a" },
     { question: "Как называется язык программирования для создания стилей?", answer: "css" }
 ];
