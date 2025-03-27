@@ -1,33 +1,23 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const customerButton = document.getElementById("customerButton");
-    const freelancerButton = document.getElementById("freelancerButton");
-    const roleSelection = document.getElementById("role-selection");
-    const jobSelection = document.getElementById("job-selection");
-    const freelancerTest = document.getElementById("freelancer-test");
-    const jobList = document.getElementById("job-list");
-    const orderForm = document.getElementById("order-form");
-    const jobTitle = document.getElementById("job-title");
+function showCustomerOptions() {
+    document.getElementById("customer-options").classList.remove("hidden");
+    document.getElementById("order-form").classList.add("hidden");
+    document.getElementById("freelancer-test").classList.add("hidden");
+}
+
+function showOrderForm(jobType) {
+    document.getElementById("customer-options").classList.add("hidden");
+    document.getElementById("order-form").classList.remove("hidden");
+}
+
+function submitOrder() {
+    let title = document.getElementById("order-title").value;
+    let description = document.getElementById("order-description").value;
     
-    customerButton.addEventListener("click", function () {
-        roleSelection.style.display = "none";
-        jobSelection.style.display = "block";
-    });
-    
-    freelancerButton.addEventListener("click", function () {
-        roleSelection.style.display = "none";
-        freelancerTest.style.display = "block";
-    });
-    
-    document.querySelectorAll(".job-item").forEach(job => {
-        job.addEventListener("click", function () {
-            jobSelection.style.display = "none";
-            orderForm.style.display = "block";
-            jobTitle.textContent = `Создание заказа: ${this.textContent}`;
-        });
-    });
-    
-    document.getElementById("order-submit").addEventListener("click", function () {
-        alert("Ваш заказ создан!");
-        location.reload();
-    });
-});
+    if (title.trim() === "" || description.trim() === "") {
+        alert("Заполните все поля!");
+        return;
+    }
+
+    alert("Заказ размещен: " + title);
+    document.getElementById("order-form").classList.add("hidden");
+}
