@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="ru">
 <head>
@@ -9,123 +8,37 @@
 </head>
 <body>
     <header>
-        <h1>Taskify</h1>
+        <h1>Добро пожаловать в Taskify</h1>
     </header>
+    
     <main>
-        <button id="btn-customer">Я заказчик</button>
-        <button id="btn-freelancer">Я фрилансер</button>
+        <section id="role-selection">
+            <h2>Выберите вашу роль</h2>
+            <button id="client-btn">Я заказчик</button>
+            <button id="freelancer-btn">Я фрилансер</button>
+        </section>
+
+        <section id="client-section" class="hidden">
+            <h2>Панель заказчика</h2>
+            <button id="create-order-btn">Опубликовать заказ</button>
+            <div id="orders-list"></div>
+        </section>
+
+        <section id="freelancer-test" class="hidden">
+            <h2>Тест для фрилансеров</h2>
+            <div id="test-questions"></div>
+            <button id="submit-test">Отправить ответы</button>
+        </section>
+
+        <section id="freelancer-profile" class="hidden">
+            <h2>Профиль фрилансера</h2>
+            <p id="profile-name"></p>
+            <p id="profile-projects"></p>
+            <p id="profile-days"></p>
+            <div id="profile-reviews"></div>
+        </section>
     </main>
+
     <script src="script.js"></script>
 </body>
 </html>
-
-<!-- script.js -->
-document.getElementById("btn-customer").addEventListener("click", function() {
-    window.location.href = "customer.html";
-});
-
-document.getElementById("btn-freelancer").addEventListener("click", function() {
-    window.location.href = "freelancer_test.html";
-});
-
-<!-- customer.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify - Заказчик</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h2>Опубликовать заказ</h2>
-    <input type="text" id="order-title" placeholder="Название заказа">
-    <textarea id="order-description" placeholder="Описание"></textarea>
-    <button id="publish-order">Опубликовать</button>
-    <div id="orders-list"></div>
-    <script src="customer.js"></script>
-</body>
-</html>
-
-<!-- customer.js -->
-document.getElementById("publish-order").addEventListener("click", function() {
-    let title = document.getElementById("order-title").value;
-    let description = document.getElementById("order-description").value;
-    if (title && description) {
-        let order = document.createElement("div");
-        order.innerHTML = `<h3>${title}</h3><p>${description}</p>`;
-        document.getElementById("orders-list").appendChild(order);
-    }
-});
-
-<!-- freelancer_test.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест фрилансера</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h2>Пройдите тест</h2>
-    <button id="pass-test">Пройти тест</button>
-    <script src="freelancer_test.js"></script>
-</body>
-</html>
-
-<!-- freelancer_test.js -->
-document.getElementById("pass-test").addEventListener("click", function() {
-    window.location.href = "freelancer_profile.html";
-});
-
-<!-- freelancer_profile.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль фрилансера</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h2>Профиль фрилансера</h2>
-    <p id="profile-name">Имя: Иван</p>
-    <p id="profile-projects">Выполненные работы: 0</p>
-    <p id="profile-days">Дней на сайте: 1</p>
-    <button id="view-orders">Посмотреть заказы</button>
-    <script src="freelancer_profile.js"></script>
-</body>
-</html>
-
-<!-- freelancer_profile.js -->
-document.getElementById("view-orders").addEventListener("click", function() {
-    window.location.href = "orders.html";
-});
-
-<!-- orders.html -->
-<!DOCTYPE html>
-<html lang="ru">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Заказы</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <h2>Доступные заказы</h2>
-    <div id="order-list"></div>
-    <script src="orders.js"></script>
-</body>
-</html>
-
-<!-- orders.js -->
-window.onload = function() {
-    let ordersContainer = document.getElementById("order-list");
-    let storedOrders = JSON.parse(localStorage.getItem("orders")) || [];
-    storedOrders.forEach(order => {
-        let orderElement = document.createElement("div");
-        orderElement.innerHTML = `<h3>${order.title}</h3><p>${order.description}</p>`;
-        ordersContainer.appendChild(orderElement);
-    });
-};
