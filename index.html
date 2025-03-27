@@ -16,16 +16,25 @@
 
     <div id="customer-menu" class="hidden">
         <h2>Выберите работу</h2>
-        <button class="work-button">Разработка</button>
-        <button class="work-button">Дизайн</button>
-        <button class="work-button">Копирайтинг</button>
-        <button class="work-button">Маркетинг</button>
+        <button class="work-button" onclick="selectWork('Разработка')">Разработка</button>
+        <button class="work-button" onclick="selectWork('Дизайн')">Дизайн</button>
+        <button class="work-button" onclick="selectWork('Копирайтинг')">Копирайтинг</button>
+        <button class="work-button" onclick="selectWork('Маркетинг')">Маркетинг</button>
+    </div>
+
+    <div id="work-description" class="hidden">
+        <h2 id="work-title"></h2>
+        <p>Опишите вашу задачу, и фрилансеры смогут вам помочь!</p>
+        <button class="role-button" onclick="alert('Функция создания заказа пока в разработке')">Создать заказ</button>
     </div>
 
     <div id="freelancer-test" class="hidden">
         <h2>Пройдите тест</h2>
         <p id="question-text">Загрузка...</p>
-        <button onclick="nextQuestion()">Следующий вопрос</button>
+        <input type="text" id="answer-input" placeholder="Ваш ответ">
+        <button onclick="checkAnswer()">Ответить</button>
+        <button id="next-button" class="hidden" onclick="nextQuestion()">Следующая задача</button>
+        <p id="result-message"></p>
     </div>
 
     <script src="script.js"></script>
