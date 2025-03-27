@@ -7,33 +7,34 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div id="main-menu">
+    <div class="container">
         <h1 class="logo">Taskify</h1>
-        <button class="role-button" onclick="showCustomerMenu()">Я заказчик</button>
+        <button class="role-button" onclick="showCustomerOptions()">Я заказчик</button>
         <button class="role-button" onclick="showFreelancerTest()">Я фрилансер</button>
     </div>
 
-    <div id="customer-menu" class="hidden">
+    <div id="customer-options" class="hidden">
         <h2>Выберите работу</h2>
-        <button class="job-button" onclick="showJobDetails('Веб-разработка')">Веб-разработка</button>
-        <button class="job-button" onclick="showJobDetails('Дизайн')">Дизайн</button>
-        <button class="job-button" onclick="showJobDetails('Копирайтинг')">Копирайтинг</button>
-        <button class="job-button" onclick="showJobDetails('Маркетинг')">Маркетинг</button>
-        <button onclick="goBack()">Назад</button>
+        <button class="job-button" onclick="showOrderForm('Дизайн')">Дизайн</button>
+        <button class="job-button" onclick="showOrderForm('Разработка')">Разработка</button>
+        <button class="job-button" onclick="showOrderForm('Копирайтинг')">Копирайтинг</button>
+        <button class="job-button" onclick="showOrderForm('Маркетинг')">Маркетинг</button>
     </div>
 
-    <div id="job-details" class="hidden">
-        <h2 id="job-title"></h2>
-        <p>Описание работы...</p>
-        <button onclick="goBackToJobs()">Назад</button>
+    <div id="order-form" class="hidden">
+        <h2>Создать заказ</h2>
+        <input type="text" id="order-title" placeholder="Название заказа">
+        <textarea id="order-description" placeholder="Описание заказа"></textarea>
+        <button onclick="submitOrder()">Разместить заказ</button>
     </div>
 
     <div id="freelancer-test" class="hidden">
         <h2>Тест для фрилансеров</h2>
-        <p id="question-text"></p>
-        <div id="answers"></div>
-        <button id="next-question" class="hidden" onclick="loadQuestion()">Следующий вопрос</button>
-        <button onclick="goBack()">Назад</button>
+        <p id="test-question"></p>
+        <input type="text" id="test-answer">
+        <button onclick="checkAnswer()">Ответить</button>
+        <p id="test-feedback"></p>
+        <button id="next-question" class="hidden" onclick="nextQuestion()">Следующий вопрос</button>
     </div>
 
     <script src="script.js"></script>
