@@ -1,32 +1,40 @@
 body {
     font-family: Arial, sans-serif;
     text-align: center;
-    background-color: #f8f8f8;
+    margin: 20px;
+    background-color: #f4f4f4;
 }
 
 .logo {
-    font-size: 2em;
+    font-size: 32px;
     font-weight: bold;
-    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
-.role-button, .work-button, button {
-    display: block;
-    width: 200px;
-    margin: 10px auto;
+button {
     padding: 10px;
-    font-size: 1em;
+    margin: 5px;
     cursor: pointer;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-}
-
-button:hover {
-    background-color: #0056b3;
+    font-size: 16px;
 }
 
 .hidden {
     display: none;
+}
+
+input, textarea {
+    display: block;
+    margin: 10px auto;
+    padding: 8px;
+    width: 80%;
+}
+
+.job-button {
+    background-color: #4CAF50;
+    color: white;
+}
+
+.role-button {
+    background-color: #008CBA;
+    color: white;
 }
