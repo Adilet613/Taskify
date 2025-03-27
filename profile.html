@@ -3,40 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Профиль фрилансера</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Профиль</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="profile-container">
-        <h2>Профиль фрилансера</h2>
-        <p><strong>Имя:</strong> <span id="profile-name"></span></p>
-        <p><strong>Выполнено работ:</strong> <span id="profile-projects">0</span></p>
-        <p><strong>Дней на платформе:</strong> <span id="profile-days">0</span></p>
-        <h3>Отзывы заказчиков</h3>
-        <div id="profile-reviews"></div>
-    </div>
-    
-    <script>
-        // Получаем данные из localStorage (они передаются из теста)
-        document.getElementById("profile-name").innerText = localStorage.getItem("freelancerName") || "Фрилансер";
-        document.getElementById("profile-projects").innerText = localStorage.getItem("completedProjects") || 0;
-        document.getElementById("profile-days").innerText = localStorage.getItem("daysOnPlatform") || 0;
-
-        // Генерируем случайные отзывы
-        const reviews = [
-            "Отличная работа! Всё сделано в срок.",
-            "Очень доволен сотрудничеством, рекомендую!",
-            "Фрилансер хорошо справился с задачей, спасибо!",
-            "Быстро, качественно, без проблем!",
-            "Профессиональный подход, все супер!"
-        ];
-        
-        let reviewsHtml = "";
-        for (let i = 0; i < 3; i++) { // Показываем 3 случайных отзыва
-            let randomReview = reviews[Math.floor(Math.random() * reviews.length)];
-            reviewsHtml += `<p>⭐ ${randomReview}</p>`;
-        }
-        document.getElementById("profile-reviews").innerHTML = reviewsHtml;
-    </script>
+    <h1>Профиль фрилансера</h1>
+    <p>Дней на сайте: <span id="days">0</span></p>
+    <p>Выполненные заказы: <span id="completed">0</span></p>
+    <button onclick="findOrders()">Найти заказы</button>
+    <div id="orders"></div>
+    <script src="profile.js"></script>
 </body>
 </html>
