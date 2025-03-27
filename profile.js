@@ -1,8 +1,10 @@
 document.addEventListener("DOMContentLoaded", function () {
+    let username = localStorage.getItem("username") || "Аноним";
     let completedProjects = localStorage.getItem("completedProjects") || "0";
     let daysOnSite = localStorage.getItem("daysOnSite") || "0";
     let reviews = JSON.parse(localStorage.getItem("reviews")) || [];
 
+    document.getElementById("profile-name").innerText = `Имя: ${username}`;
     document.getElementById("profile-projects").innerText = `Выполненных работ: ${completedProjects}`;
     document.getElementById("profile-days").innerText = `На сайте: ${daysOnSite} дней`;
 
@@ -13,9 +15,5 @@ document.addEventListener("DOMContentLoaded", function () {
         let reviewElement = document.createElement("p");
         reviewElement.innerHTML = `<strong>${review.name}</strong> (${review.rating}/5): ${review.comment}`;
         reviewsContainer.appendChild(reviewElement);
-    });
-
-    document.getElementById("go-to-orders").addEventListener("click", function () {
-        window.location.href = "orders.html";
     });
 });
