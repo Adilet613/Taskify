@@ -1,54 +1,18 @@
-document.addEventListener("DOMContentLoaded", function () {
-    let questions = [
-        { question: "Как называется язык разметки веб-страниц?", answer: "HTML" },
-        { question: "Как называется язык программирования для создания стилей?", answer: "CSS" },
-        { question: "Какой язык программирования используется для веб-разработки?", answer: "JavaScript" },
-        { question: "Что означает сокращение HTTP?", answer: "HyperText Transfer Protocol" },
-        { question: "Как называется база данных, часто используемая в веб-разработке?", answer: "MySQL" },
-        { question: "Какой метод в JavaScript используется для вывода в консоль?", answer: "console.log" },
-        { question: "Как называется язык запросов к базе данных?", answer: "SQL" }
-    ];
-
-    let currentQuestionIndex = 0;
-
-    function loadQuestion() {
-        if (currentQuestionIndex < questions.length) {
-            document.getElementById("test-question").innerText = questions[currentQuestionIndex].question;
-            document.getElementById("test-answer").value = "";
-            document.getElementById("test-feedback").innerText = "";
-            document.getElementById("next-question").classList.add("hidden");
-        } else {
-            showFreelancerProfile(); // После прохождения теста переходим к профилю
-        }
-    }
-
-    function checkAnswer() {
-        let userAnswer = document.getElementById("test-answer").value.trim();
-        let correctAnswer = questions[currentQuestionIndex].answer;
-
-        if (userAnswer.toLowerCase() === correctAnswer.toLowerCase()) {
-            document.getElementById("test-feedback").innerText = "Правильно!";
-            document.getElementById("next-question").classList.remove("hidden");
-        } else {
-            document.getElementById("test-feedback").innerText = "Неправильно. Попробуйте еще раз!";
-        }
-    }
-
-    function nextQuestion() {
-        currentQuestionIndex++;
-        loadQuestion();
-    }
-
-    function showFreelancerProfile() {
-        document.getElementById("freelancer-test").classList.add("hidden");
-        document.getElementById("freelancer-profile").classList.remove("hidden");
-
-        document.getElementById("profile-name").innerText = "Фрилансер";
-        document.getElementById("profile-status").innerText = "Вы успешно прошли тест!";
-    }
-
-    document.getElementById("submit-answer").addEventListener("click", checkAnswer);
-    document.getElementById("next-question").addEventListener("click", nextQuestion);
-
-    loadQuestion();
-});
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Тест фрилансера</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Пройдите тест</h1>
+    <div id="test-container">
+        <p id="question">Вопрос будет здесь</p>
+        <input type="text" id="answer" placeholder="Ваш ответ">
+        <button onclick="submitAnswer()">Ответить</button>
+    </div>
+    <script src="freelancer-test.js"></script>
+</body>
+</html>
