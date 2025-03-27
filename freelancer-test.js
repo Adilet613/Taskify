@@ -30,6 +30,13 @@ const questions = [
     // Добавь еще вопросы, если нужно
 ];
 
+function startTest() {
+    // Скрыть кнопку начала теста
+    document.getElementById('start-test-btn').style.display = 'none';
+    // Показываем первый вопрос
+    showQuestion();
+}
+
 function showQuestion() {
     const question = questions[currentQuestionIndex];
     const questionContainer = document.getElementById('question-container');
@@ -41,6 +48,8 @@ function showQuestion() {
             <li><input type="radio" name="answer" value="c"> ${question.options.c}</li>
         </ul>
     `;
+    // Показываем кнопку отправки ответа
+    document.getElementById('submit-answer-btn').style.display = 'inline-block';
 }
 
 function submitAnswer() {
@@ -72,6 +81,3 @@ function nextQuestion() {
         window.location.href = "tasks.html"; // Переход к списку задач
     }
 }
-
-// Показываем первый вопрос при загрузке страницы
-showQuestion();
