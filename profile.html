@@ -4,21 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Профиль фрилансера</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="profile-container">
-        <h1>Профиль фрилансера</h1>
-        <img id="avatar" src="default-avatar.png" alt="Аватар" class="avatar">
-        <h2 id="freelancer-name">Имя фрилансера</h2>
-        <p><strong>Рейтинг:</strong> <span id="rating">0.0</span></p>
-        <p><strong>Навыки:</strong> <span id="skills">Нет данных</span></p>
-        <button onclick="goToOrders()">Посмотреть заказы</button>
+    <div id="profile">
+        <h2>Профиль фрилансера</h2>
+        <p id="profile-name">Фрилансер</p>
+        <p id="profile-status">Вы успешно прошли тест!</p>
+        <p id="profile-projects"></p>
+        <p id="profile-days"></p>
+        <div id="profile-reviews"></div>
     </div>
-    <script>
-        function goToOrders() {
-            window.location.href = "orders.html"; // Перенаправление на страницу заказов
-        }
-    </script>
+
+    <script src="profile.js"></script>
 </body>
 </html>
