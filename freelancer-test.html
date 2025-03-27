@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Фрилансер Тест</title>
+    <title>Тест Фрилансера</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
@@ -15,8 +15,11 @@
             <!-- Вопросы и ответы будут добавляться через JS -->
         </div>
 
+        <!-- Кнопка для начала теста -->
+        <button id="start-test-btn" onclick="startTest()">Начать тест</button>
+
         <!-- Кнопка для отправки ответа -->
-        <button id="submit-answer-btn" onclick="submitAnswer()">Ответить</button>
+        <button id="submit-answer-btn" onclick="submitAnswer()" style="display: none;">Ответить</button>
         <!-- Кнопка для следующего вопроса -->
         <button id="next-question-btn" onclick="nextQuestion()" style="display: none;">Следующий вопрос</button>
     </div>
