@@ -14,4 +14,8 @@ document.addEventListener("DOMContentLoaded", function () {
         reviewElement.innerHTML = `<strong>${review.name}</strong> (${review.rating}/5): ${review.comment}`;
         reviewsContainer.appendChild(reviewElement);
     });
+
+    document.getElementById("go-to-orders").addEventListener("click", function () {
+        window.location.href = "orders.html";
+    });
 });
