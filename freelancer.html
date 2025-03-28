@@ -3,22 +3,20 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Taskify - Фрилансер</title>
+    <title>Я фрилансер</title>
     <link rel="stylesheet" href="styles.css">
-    <script src="freelancer-test.js"></script>
 </head>
 <body>
     <div class="container">
         <h1>Добро пожаловать, фрилансер!</h1>
-        <p>Здесь вы можете пройти тест, чтобы подтвердить свои навыки.</p>
-        <!-- Кнопка для начала теста -->
-        <button onclick="startTest()">Начать тест</button>
-
-        <div id="test-container" style="display: none;">
-            <h2>Тест для фрилансеров</h2>
-            <div id="question-container"></div>
-            <button id="next-question" style="display: none;" onclick="nextQuestion()">Следующий вопрос</button>
-        </div>
+        <p>Чтобы приступить к заказам, пройдите тест.</p>
+        <button id="startTestBtn">Начать тест</button>
     </div>
+
+    <script>
+        document.getElementById("startTestBtn").addEventListener("click", function() {
+            window.location.href = "freelancer-test.html";
+        });
+    </script>
 </body>
 </html>
