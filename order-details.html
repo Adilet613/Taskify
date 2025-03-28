@@ -1,19 +1,19 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Детали заказа</title>
+    <title>Order Details</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Детали заказа</h1>
-        <div id="orderDetails"></div>
-        <button onclick="applyForOrder()">Откликнуться</button>
-        <button onclick="window.location.href='orders.html'">Назад</button>
-    </div>
-
+    <h1>Order Details</h1>
+    <div id="order-info"></div>
+    <h2>Chat</h2>
+    <div id="chat-container"></div>
+    <input type="text" id="chat-input" placeholder="Write a message...">
+    <button onclick="sendMessage()">Send</button>
+    
     <script src="order-details.js"></script>
 </body>
 </html>
