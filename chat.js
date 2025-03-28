@@ -2,7 +2,6 @@ document.addEventListener("DOMContentLoaded", function () {
     let chatWindow = document.getElementById("chatWindow");
     let messages = JSON.parse(localStorage.getItem("chatMessages")) || [];
 
-    // Функция для обновления чата
     function updateChat() {
         chatWindow.innerHTML = "";
         messages.forEach(msg => {
@@ -15,7 +14,6 @@ document.addEventListener("DOMContentLoaded", function () {
     updateChat();
 });
 
-// Отправка сообщений
 function sendMessage() {
     let messageInput = document.getElementById("messageInput");
     let message = messageInput.value.trim();
@@ -26,6 +24,6 @@ function sendMessage() {
         localStorage.setItem("chatMessages", JSON.stringify(messages));
 
         messageInput.value = "";
-        location.reload(); // Перезагрузка для обновления чата
+        location.reload();
     }
 }
