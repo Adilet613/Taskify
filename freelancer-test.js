@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function() {
             optionC.textContent = q.options[2];
             nextQuestionBtn.style.display = "none"; // Прячем кнопку "Следующий вопрос"
         } else {
-            window.location.href = "task-list.html"; // После теста переходит к списку задач
+            window.location.href = "orders.html"; // Переход в заказы после теста
         }
     }
 
