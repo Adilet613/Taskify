@@ -10,18 +10,24 @@ document.getElementById("registerForm").addEventListener("submit", function(even
         return;
     }
 
-    // Создаем объект пользователя
-    const user = {
-        username: username,
-        email: email,
-        password: password
-    };
+    // Получаем список пользователей из localStorage или создаем новый массив
+    let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    // Сохраняем пользователя в localStorage (имитация базы данных)
-    localStorage.setItem("user", JSON.stringify(user));
+    // Проверяем, есть ли уже такой email в системе
+    if (users.some(user => user.email === email)) {
+        alert("Пользователь с таким email уже зарегистрирован!");
+        return;
+    }
+
+    // Добавляем нового пользователя
+    users.push({ username, email, password });
+    localStorage.setItem("users", JSON.stringify(users));
 
     alert("Регистрация успешна!");
 
-    // Перенаправляем на страницу входа
-    window.location.href = "login.html";
+    // Сохраняем текущего пользователя как авторизованного
+    localStorage.setItem("currentUser", JSON.stringify({ username, email }));
+
+    // Перенаправляем на главную страницу
+    window.location.href = "index.html";
 });
