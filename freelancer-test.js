@@ -1,12 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-    let startTestBtn = document.getElementById("startTestBtn");
-
-    if (startTestBtn) {
-        startTestBtn.addEventListener("click", function() {
-            window.location.href = "freelancer-test.html"; // Переход на страницу теста
-        });
-    }
-
     let questions = [
         {
             question: "Что делает тег <div> в HTML?",
@@ -36,14 +28,20 @@ document.addEventListener("DOMContentLoaded", function() {
     ];
 
     let currentQuestion = 0;
+    let questionElement = document.getElementById("question");
+    let optionA = document.getElementById("optionA");
+    let optionB = document.getElementById("optionB");
+    let optionC = document.getElementById("optionC");
+    let nextQuestionBtn = document.getElementById("nextQuestionBtn");
 
     function loadQuestion() {
         if (currentQuestion < questions.length) {
             let q = questions[currentQuestion];
-            document.getElementById("question").textContent = q.question;
-            document.getElementById("optionA").textContent = q.options[0];
-            document.getElementById("optionB").textContent = q.options[1];
-            document.getElementById("optionC").textContent = q.options[2];
+            questionElement.textContent = q.question;
+            optionA.textContent = q.options[0];
+            optionB.textContent = q.options[1];
+            optionC.textContent = q.options[2];
+            nextQuestionBtn.style.display = "none"; // Прячем кнопку "Следующий вопрос"
         } else {
             window.location.href = "task-list.html"; // После теста переходит к списку задач
         }
@@ -53,15 +51,17 @@ document.addEventListener("DOMContentLoaded", function() {
         button.addEventListener("click", function() {
             let selectedAnswer = this.getAttribute("data-answer");
             if (selectedAnswer === questions[currentQuestion].correct) {
-                currentQuestion++;
-                loadQuestion();
+                nextQuestionBtn.style.display = "block"; // Показываем кнопку "Следующий вопрос"
             } else {
                 alert("Неправильный ответ! Попробуйте еще раз.");
             }
         });
     });
 
-    if (document.getElementById("question")) {
-        loadQuestion(); // Загружаем первый вопрос
-    }
+    nextQuestionBtn.addEventListener("click", function() {
+        currentQuestion++;
+        loadQuestion();
+    });
+
+    loadQuestion();
 });
