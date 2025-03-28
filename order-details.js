@@ -1,33 +1,21 @@
 document.addEventListener("DOMContentLoaded", function () {
     let orderDetails = document.getElementById("orderDetails");
-
-    // Получаем ID выбранного заказа
-    let orderId = localStorage.getItem("selectedOrder");
-    if (!orderId) {
-        orderDetails.innerHTML = "<p>Заказ не найден.</p>";
-        return;
-    }
-
-    // Получаем заказы из localStorage
     let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    let order = orders.find(o => o.id == orderId);
+    let index = localStorage.getItem("selectedOrder");
 
-    if (!order) {
+    if (orders[index]) {
+        let order = orders[index];
+        orderDetails.innerHTML = `
+            <h3>${order.title}</h3>
+            <p>${order.description}</p>
+            <p><strong>Цена:</strong> ${order.price} руб.</p>
+        `;
+    } else {
         orderDetails.innerHTML = "<p>Заказ не найден.</p>";
-        return;
     }
-
-    // Отображаем данные заказа
-    orderDetails.innerHTML = `
-        <h2>${order.title}</h2>
-        <p><strong>Описание:</strong> ${order.description}</p>
-        <p><strong>Цена:</strong> ${order.price}₽</p>
-        <button onclick="applyForOrder(${order.id})">Откликнуться</button>
-    `;
 });
 
-// Функция для обработки отклика на заказ
-function applyForOrder(orderId) {
-    alert("Вы откликнулись на заказ! Заказчик скоро с вами свяжется.");
-    window.location.href = "orders.html";
+function applyForOrder() {
+    localStorage.setItem("chatMessages", JSON.stringify([])); // Очищаем чат
+    window.location.href = "chat.html"; // Переход в чат
 }
