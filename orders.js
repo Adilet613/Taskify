@@ -1,80 +1,50 @@
-// orders.js - обработка заказов
+document.addEventListener("DOMContentLoaded", function () {
+    const orderForm = document.getElementById("orderForm");
+    const ordersList = document.getElementById("ordersList");
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
 
-// Загружаем заказы из локального хранилища или создаем пустой массив
-let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    function saveOrders() {
+        localStorage.setItem("orders", JSON.stringify(orders));
+    }
 
-// Функция для сохранения заказов в localStorage
-function saveOrders() {
-    localStorage.setItem("orders", JSON.stringify(orders));
-}
+    function renderOrders() {
+        ordersList.innerHTML = "";
+        orders.forEach((order, index) => {
+            const orderItem = document.createElement("div");
+            orderItem.classList.add("order-item");
+            orderItem.innerHTML = `
+                <h3>${order.title}</h3>
+                <p>${order.description}</p>
+                <p><strong>Цена:</strong> ${order.price} USD</p>
+                <button class="delete-order" data-index="${index}">Удалить</button>
+            `;
+            ordersList.appendChild(orderItem);
+        });
+    }
 
-// Функция для отображения заказов на странице
-function displayOrders() {
-    const ordersContainer = document.getElementById("orders-container");
-    if (!ordersContainer) return;
-    ordersContainer.innerHTML = "";
-    
-    orders.forEach((order, index) => {
-        const orderElement = document.createElement("div");
-        orderElement.classList.add("order-item");
-        orderElement.innerHTML = `
-            <h3>${order.title}</h3>
-            <p>${order.description}</p>
-            <p><strong>Цена:</strong> ${order.price}</p>
-            <button onclick="openChat(${index})">Откликнуться</button>
-            ${order.creator === localStorage.getItem("currentUser") ? `<button onclick="deleteOrder(${index})">Удалить заказ</button>` : ""}
-        `;
-        ordersContainer.appendChild(orderElement);
+    orderForm.addEventListener("submit", function (event) {
+        event.preventDefault();
+        const title = document.getElementById("orderTitle").value;
+        const description = document.getElementById("orderDescription").value;
+        const price = document.getElementById("orderPrice").value;
+
+        if (title && description && price) {
+            const newOrder = { title, description, price };
+            orders.push(newOrder);
+            saveOrders();
+            renderOrders();
+            orderForm.reset();
+        }
     });
-}
 
-// Функция для добавления нового заказа
-function addOrder(title, description, price) {
-    const newOrder = {
-        title,
-        description,
-        price,
-        creator: localStorage.getItem("currentUser"), // Сохраняем, кто создал заказ
-        responses: [] // Список откликов
-    };
-    orders.push(newOrder);
-    saveOrders();
-    displayOrders();
-}
+    ordersList.addEventListener("click", function (event) {
+        if (event.target.classList.contains("delete-order")) {
+            const index = event.target.getAttribute("data-index");
+            orders.splice(index, 1);
+            saveOrders();
+            renderOrders();
+        }
+    });
 
-// Функция для удаления заказа (только заказчик может удалить его)
-function deleteOrder(index) {
-    if (orders[index].creator === localStorage.getItem("currentUser")) {
-        orders.splice(index, 1);
-        saveOrders();
-        displayOrders();
-    }
-}
-
-// Функция для отклика на заказ
-function openChat(index) {
-    let freelancer = localStorage.getItem("currentUser");
-    if (!freelancer) {
-        alert("Сначала войдите в аккаунт!");
-        return;
-    }
-    let message = prompt("Введите сообщение для заказчика:");
-    if (message) {
-        orders[index].responses.push({ freelancer, message });
-        saveOrders();
-        alert("Ваш отклик отправлен заказчику!");
-    }
-}
-
-// Функция для просмотра откликов заказчиком
-function viewResponses(index) {
-    let order = orders[index];
-    if (order.creator !== localStorage.getItem("currentUser")) {
-        alert("Вы не можете просматривать отклики к этому заказу!");
-        return;
-    }
-    let responsesText = order.responses.map(r => `${r.freelancer}: ${r.message}`).join("\n");
-    alert(responsesText || "Пока нет откликов");
-}
-
-displayOrders();
+    renderOrders();
+});
