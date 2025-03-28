@@ -1,80 +1,67 @@
-// freelancer-test.js
-const questions = [
-    {
-        question: "Какая основная задача UX-дизайнера?",
-        answers: ["A) Создавать красивые изображения", "B) Улучшать пользовательский опыт", "C) Писать код"],
-        correct: "B"
-    },
-    {
-        question: "Что такое HTML?",
-        answers: ["A) Язык программирования", "B) Язык разметки", "C) Графический редактор"],
-        correct: "B"
-    },
-    {
-        question: "Какой язык чаще всего используется для backend-разработки?",
-        answers: ["A) JavaScript", "B) Python", "C) Photoshop"],
-        correct: "B"
-    },
-    {
-        question: "Что делает CSS?",
-        answers: ["A) Добавляет стили", "B) Запускает сервер", "C) Хранит данные"],
-        correct: "A"
-    },
-    {
-        question: "Что такое фриланс?",
-        answers: ["A) Работа в офисе", "B) Работа на себя", "C) Работа без зарплаты"],
-        correct: "B"
+document.addEventListener("DOMContentLoaded", function() {
+    let startTestBtn = document.getElementById("startTestBtn");
+
+    if (startTestBtn) {
+        startTestBtn.addEventListener("click", function() {
+            window.location.href = "freelancer-test.html"; // Переход на страницу теста
+        });
     }
-];
 
-let currentQuestionIndex = 0;
-let selectedAnswer = "";
+    let questions = [
+        {
+            question: "Что делает тег <div> в HTML?",
+            options: ["A: Создает заголовок", "B: Группирует элементы", "C: Добавляет изображение"],
+            correct: "B"
+        },
+        {
+            question: "Какой язык используется для стилизации веб-страниц?",
+            options: ["A: CSS", "B: HTML", "C: Python"],
+            correct: "A"
+        },
+        {
+            question: "Что делает оператор '===' в JavaScript?",
+            options: ["A: Сравнивает только значение", "B: Сравнивает значение и тип данных", "C: Это побитовый оператор"],
+            correct: "B"
+        },
+        {
+            question: "Какой метод используется для вывода в консоль в JavaScript?",
+            options: ["A: console.log()", "B: print()", "C: alert()"],
+            correct: "A"
+        },
+        {
+            question: "Как в CSS задать цвет фона элемента?",
+            options: ["A: color", "B: background-color", "C: font-color"],
+            correct: "B"
+        }
+    ];
 
-const questionText = document.getElementById("question-text");
-const answerButtons = document.getElementById("answer-buttons");
-const submitButton = document.getElementById("submit-answer");
-const nextButton = document.getElementById("next-question");
+    let currentQuestion = 0;
 
-function loadQuestion() {
-    const currentQuestion = questions[currentQuestionIndex];
-    questionText.innerText = currentQuestion.question;
-    answerButtons.innerHTML = "";
-    
-    currentQuestion.answers.forEach((answer, index) => {
-        const button = document.createElement("button");
-        button.innerText = answer;
-        button.classList.add("answer-btn");
-        button.setAttribute("data-option", ["A", "B", "C"][index]);
-        button.addEventListener("click", selectAnswer);
-        answerButtons.appendChild(button);
+    function loadQuestion() {
+        if (currentQuestion < questions.length) {
+            let q = questions[currentQuestion];
+            document.getElementById("question").textContent = q.question;
+            document.getElementById("optionA").textContent = q.options[0];
+            document.getElementById("optionB").textContent = q.options[1];
+            document.getElementById("optionC").textContent = q.options[2];
+        } else {
+            window.location.href = "task-list.html"; // После теста переходит к списку задач
+        }
+    }
+
+    document.querySelectorAll(".option").forEach(button => {
+        button.addEventListener("click", function() {
+            let selectedAnswer = this.getAttribute("data-answer");
+            if (selectedAnswer === questions[currentQuestion].correct) {
+                currentQuestion++;
+                loadQuestion();
+            } else {
+                alert("Неправильный ответ! Попробуйте еще раз.");
+            }
+        });
     });
-    submitButton.disabled = true;
-    nextButton.style.display = "none";
-}
 
-function selectAnswer(event) {
-    selectedAnswer = event.target.getAttribute("data-option");
-    submitButton.disabled = false;
-}
-
-submitButton.addEventListener("click", () => {
-    if (selectedAnswer === questions[currentQuestionIndex].correct) {
-        alert("Правильный ответ!");
-        nextButton.style.display = "block";
-    } else {
-        alert("Неправильный ответ. Попробуйте ещё раз!");
-    }
-    submitButton.disabled = true;
-});
-
-nextButton.addEventListener("click", () => {
-    currentQuestionIndex++;
-    if (currentQuestionIndex < questions.length) {
-        loadQuestion();
-    } else {
-        alert("Тест завершён! Переход к списку задач.");
-        window.location.href = "task-list.html";
+    if (document.getElementById("question")) {
+        loadQuestion(); // Загружаем первый вопрос
     }
 });
-
-loadQuestion();
