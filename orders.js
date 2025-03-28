@@ -1,26 +1,32 @@
 document.addEventListener("DOMContentLoaded", function () {
-    const ordersList = document.getElementById("orders-list");
-    const createOrderBtn = document.getElementById("create-order-btn");
-    const orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let ordersList = document.getElementById("ordersList");
 
-    function renderOrders() {
-        ordersList.innerHTML = "";
-        orders.forEach((order, index) => {
-            const orderElement = document.createElement("div");
-            orderElement.innerText = `${index + 1}. ${order.title} - ${order.description}`;
-            ordersList.appendChild(orderElement);
-        });
+    // Получаем заказы из localStorage
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+
+    if (orders.length === 0) {
+        ordersList.innerHTML = "<p>Пока нет заказов.</p>";
+        return;
     }
 
-    createOrderBtn.addEventListener("click", function () {
-        const title = prompt("Введите заголовок заказа:");
-        const description = prompt("Введите описание заказа:");
-        if (title && description) {
-            orders.push({ title, description });
-            localStorage.setItem("orders", JSON.stringify(orders));
-            renderOrders();
-        }
-    });
+    // Выводим заказы
+    orders.forEach(order => {
+        let orderDiv = document.createElement("div");
+        orderDiv.classList.add("order");
 
-    renderOrders();
+        orderDiv.innerHTML = `
+            <h2>${order.title}</h2>
+            <p>${order.description}</p>
+            <p><strong>Цена:</strong> ${order.price}₽</p>
+            <button onclick="openOrder(${order.id})">Откликнуться</button>
+        `;
+
+        ordersList.appendChild(orderDiv);
+    });
 });
+
+// Функция для обработки нажатия на кнопку "Откликнуться"
+function openOrder(orderId) {
+    localStorage.setItem("selectedOrder", orderId);
+    window.location.href = "order-details.html";
+}
