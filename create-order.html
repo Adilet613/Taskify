@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Создание заказа</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Создание заказа</h1>
+        <form id="orderForm">
+            <label for="title">Название заказа:</label>
+            <input type="text" id="title" required>
+
+            <label for="description">Подробное описание:</label>
+            <textarea id="description" required></textarea>
+
+            <label for="price">Сумма оплаты:</label>
+            <input type="number" id="price" required>
+
+            <button type="submit">Опубликовать</button>
+        </form>
+        <a href="customer.html">Назад</a>
+    </div>
+
+    <script src="create-order.js"></script>
+</body>
+</html>
