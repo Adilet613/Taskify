@@ -1,83 +1,80 @@
-let currentQuestionIndex = 0;  // Индекс текущего вопроса
+// freelancer-test.js
 const questions = [
     {
+        question: "Какая основная задача UX-дизайнера?",
+        answers: ["A) Создавать красивые изображения", "B) Улучшать пользовательский опыт", "C) Писать код"],
+        correct: "B"
+    },
+    {
         question: "Что такое HTML?",
-        options: {
-            a: "Язык программирования",
-            b: "Язык разметки",
-            c: "Операционная система"
-        },
-        correctAnswer: "b"  // Правильный ответ
+        answers: ["A) Язык программирования", "B) Язык разметки", "C) Графический редактор"],
+        correct: "B"
     },
     {
-        question: "Что такое CSS?",
-        options: {
-            a: "Язык программирования",
-            b: "Язык для стилизации",
-            c: "Система управления базами данных"
-        },
-        correctAnswer: "b"
+        question: "Какой язык чаще всего используется для backend-разработки?",
+        answers: ["A) JavaScript", "B) Python", "C) Photoshop"],
+        correct: "B"
     },
     {
-        question: "Что такое JavaScript?",
-        options: {
-            a: "Язык программирования для динамических страниц",
-            b: "Язык разметки",
-            c: "Язык для оформления страниц"
-        },
-        correctAnswer: "a"
+        question: "Что делает CSS?",
+        answers: ["A) Добавляет стили", "B) Запускает сервер", "C) Хранит данные"],
+        correct: "A"
     },
-    // Добавь еще вопросы, если нужно
+    {
+        question: "Что такое фриланс?",
+        answers: ["A) Работа в офисе", "B) Работа на себя", "C) Работа без зарплаты"],
+        correct: "B"
+    }
 ];
 
-function startTest() {
-    // Скрыть кнопку начала теста
-    document.getElementById('start-test-btn').style.display = 'none';
-    // Показываем первый вопрос
-    showQuestion();
+let currentQuestionIndex = 0;
+let selectedAnswer = "";
+
+const questionText = document.getElementById("question-text");
+const answerButtons = document.getElementById("answer-buttons");
+const submitButton = document.getElementById("submit-answer");
+const nextButton = document.getElementById("next-question");
+
+function loadQuestion() {
+    const currentQuestion = questions[currentQuestionIndex];
+    questionText.innerText = currentQuestion.question;
+    answerButtons.innerHTML = "";
+    
+    currentQuestion.answers.forEach((answer, index) => {
+        const button = document.createElement("button");
+        button.innerText = answer;
+        button.classList.add("answer-btn");
+        button.setAttribute("data-option", ["A", "B", "C"][index]);
+        button.addEventListener("click", selectAnswer);
+        answerButtons.appendChild(button);
+    });
+    submitButton.disabled = true;
+    nextButton.style.display = "none";
 }
 
-function showQuestion() {
-    const question = questions[currentQuestionIndex];
-    const questionContainer = document.getElementById('question-container');
-    questionContainer.innerHTML = `
-        <p>${question.question}</p>
-        <ul>
-            <li><input type="radio" name="answer" value="a"> ${question.options.a}</li>
-            <li><input type="radio" name="answer" value="b"> ${question.options.b}</li>
-            <li><input type="radio" name="answer" value="c"> ${question.options.c}</li>
-        </ul>
-    `;
-    // Показываем кнопку отправки ответа
-    document.getElementById('submit-answer-btn').style.display = 'inline-block';
+function selectAnswer(event) {
+    selectedAnswer = event.target.getAttribute("data-option");
+    submitButton.disabled = false;
 }
 
-function submitAnswer() {
-    const selectedAnswer = document.querySelector('input[name="answer"]:checked');
-    if (selectedAnswer) {
-        const answerValue = selectedAnswer.value;
-        const correctAnswer = questions[currentQuestionIndex].correctAnswer;
-        
-        if (answerValue === correctAnswer) {
-            alert('Правильный ответ!');
-            document.getElementById('next-question-btn').style.display = 'block';
-            document.getElementById('submit-answer-btn').style.display = 'none';
-        } else {
-            alert('Неправильный ответ, попробуйте снова!');
-        }
+submitButton.addEventListener("click", () => {
+    if (selectedAnswer === questions[currentQuestionIndex].correct) {
+        alert("Правильный ответ!");
+        nextButton.style.display = "block";
     } else {
-        alert('Пожалуйста, выберите ответ!');
+        alert("Неправильный ответ. Попробуйте ещё раз!");
     }
-}
+    submitButton.disabled = true;
+});
 
-function nextQuestion() {
+nextButton.addEventListener("click", () => {
     currentQuestionIndex++;
     if (currentQuestionIndex < questions.length) {
-        showQuestion();
-        document.getElementById('submit-answer-btn').style.display = 'inline-block';
-        document.getElementById('next-question-btn').style.display = 'none';
+        loadQuestion();
     } else {
-        alert('Тест завершен!');
-        window.location.href = "tasks.html"; // Переход к списку задач
+        alert("Тест завершён! Переход к списку задач.");
+        window.location.href = "task-list.html";
     }
-}
+});
+
+loadQuestion();
