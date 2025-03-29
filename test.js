@@ -5,7 +5,7 @@ document.getElementById("submit-test").addEventListener("click", function () {
     if (answer1 === "правильный ответ" && answer2 === "правильный ответ") {
         localStorage.setItem("isFreelancer", "true");
         alert("Поздравляем! Вы прошли тест.");
-        window.location.href = "dashboard.html";
+        window.location.href = "orders.html"; // Отправляем на страницу с заказами
     } else {
         alert("Тест не пройден. Попробуйте снова.");
     }
