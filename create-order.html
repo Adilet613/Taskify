@@ -3,27 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Создание заказа</title>
+    <title>Создать заказ</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Создание заказа</h1>
-        <form id="orderForm">
-            <label for="title">Название заказа:</label>
-            <input type="text" id="title" required>
+    <header>
+        <h1>Создать заказ</h1>
+    </header>
+    <main>
+        <form id="order-form">
+            <label for="order-title">Название заказа:</label>
+            <input type="text" id="order-title" required>
 
-            <label for="description">Подробное описание:</label>
-            <textarea id="description" required></textarea>
+            <label for="order-description">Описание:</label>
+            <textarea id="order-description" required></textarea>
 
-            <label for="price">Сумма оплаты:</label>
-            <input type="number" id="price" required>
+            <label for="order-job">Категория работы:</label>
+            <select id="order-job">
+                <option value="design">Дизайн</option>
+                <option value="development">Разработка</option>
+                <option value="writing">Копирайтинг</option>
+                <option value="marketing">Маркетинг</option>
+            </select>
 
-            <button type="submit">Опубликовать</button>
+            <button type="submit">Опубликовать заказ</button>
         </form>
-        <a href="customer.html">Назад</a>
-    </div>
-
-    <script src="create-order.js"></script>
+    </main>
+    <script src="add-order.js"></script>
 </body>
 </html>
