@@ -1,65 +1,56 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const questions = [
-        {
-            question: "Что делает дизайнер?",
-            answers: { A: "Рисует и создает макеты", B: "Пишет код", C: "Продвигает товары" },
-            correct: "A"
-        },
-        {
-            question: "Что делает программист?",
-            answers: { A: "Создает рекламу", B: "Пишет код", C: "Делает переводы" },
-            correct: "B"
-        },
-        {
-            question: "Что делает копирайтер?",
-            answers: { A: "Пишет статьи и тексты", B: "Редактирует видео", C: "Создает базы данных" },
-            correct: "A"
-        },
-        {
-            question: "Что делает маркетолог?",
-            answers: { A: "Исследует рынок и продвигает товары", B: "Разрабатывает сайты", C: "Пишет музыку" },
-            correct: "A"
-        },
-        {
-            question: "Какое число продолжает последовательность: 2, 6, 12, 20, ?",
-            answers: { A: "30", B: "42", C: "26" },
-            correct: "30"
-        }
-    ];
-    
-    let currentQuestionIndex = 0;
-    const questionContainer = document.getElementById("question-container");
-    const nextButton = document.getElementById("next-button");
-    
-    function loadQuestion() {
-        const q = questions[currentQuestionIndex];
-        questionContainer.innerHTML = `
-            <h2>${q.question}</h2>
-            <button class="answer" data-answer="A">A: ${q.answers.A}</button>
-            <button class="answer" data-answer="B">B: ${q.answers.B}</button>
-            <button class="answer" data-answer="C">C: ${q.answers.C}</button>
-        `;
-        document.querySelectorAll(".answer").forEach(button => {
-            button.addEventListener("click", function () {
-                if (this.dataset.answer === q.correct) {
-                    nextButton.style.display = "block";
-                } else {
-                    alert("Неправильный ответ! Попробуйте еще раз.");
-                }
-            });
-        });
+const questions = [
+    { 
+        question: "Что делает CSS?", 
+        answers: { A: "Добавляет стили", B: "Запускает код", C: "Создает сервер" },
+        correct: "A"
+    },
+    { 
+        question: "Какая функция отвечает за ввод в C++?", 
+        answers: { A: "cout", B: "cin", C: "print" },
+        correct: "B"
+    },
+    { 
+        question: "Какой формат используется для изображений?", 
+        answers: { A: "JPEG", B: "MP3", C: "TXT" },
+        correct: "A"
+    },
+    { 
+        question: "Кто пишет статьи?", 
+        answers: { A: "Копирайтер", B: "Разработчик", C: "Админ" },
+        correct: "A"
+    },
+    { 
+        question: "Какое число следует за 21, 34, 55?", 
+        answers: { A: "79", B: "89", C: "144" },
+        correct: "B"
     }
-    
-    nextButton.addEventListener("click", function () {
-        currentQuestionIndex++;
-        if (currentQuestionIndex < questions.length) {
-            nextButton.style.display = "none";
-            loadQuestion();
-        } else {
-            alert("Поздравляем! Вы прошли тест.");
-            window.location.href = "worker-dashboard.html";
-        }
+];
+
+let currentQuestion = 0;
+
+function loadQuestion() {
+    const q = questions[currentQuestion];
+    document.getElementById("question").innerText = q.question;
+    document.querySelectorAll(".answer").forEach((btn, index) => {
+        btn.innerText = Object.values(q.answers)[index];
+        btn.onclick = () => checkAnswer(Object.keys(q.answers)[index]);
     });
-    
-    loadQuestion();
-});
+}
+
+function checkAnswer(answer) {
+    if (answer === questions[currentQuestion].correct) {
+        document.getElementById("next-question").style.display = "block";
+    }
+}
+
+function nextQuestion() {
+    currentQuestion++;
+    if (currentQuestion < questions.length) {
+        document.getElementById("next-question").style.display = "none";
+        loadQuestion();
+    } else {
+        window.location.href = "choose-job.html";
+    }
+}
+
+document.addEventListener("DOMContentLoaded", loadQuestion);
