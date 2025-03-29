@@ -1,24 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест для работников</title>
+    <title>Тест для фрилансеров</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
-        <h1 class="center">Пройдите тест</h1>
+        <h1 class="center">Пройдите тест, чтобы стать фрилансером</h1>
     </header>
     <main>
         <div class="center" id="test-container">
-            <p>Вопрос 1: Сколько будет 2 + 2?</p>
-            <input type="text" id="answer-1">
-            
-            <p>Вопрос 2: Какой язык программирования используется на Taskify?</p>
-            <input type="text" id="answer-2">
-            
-            <button id="submit-test">Отправить</button>
+            <h2 id="question">Вопрос появится здесь</h2>
+            <div id="answers">
+                <button class="answer" onclick="checkAnswer('A')">A</button>
+                <button class="answer" onclick="checkAnswer('B')">B</button>
+                <button class="answer" onclick="checkAnswer('C')">C</button>
+            </div>
+            <button id="next-question" onclick="nextQuestion()" style="display: none;">Следующий</button>
         </div>
     </main>
     <script src="test.js"></script>
