@@ -10,22 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        allOrders.forEach((order, index) => {
+        allOrders.forEach(order => {
             let li = document.createElement("li");
             li.innerHTML = `
                 <strong>${order.title}</strong> - ${order.description}
-                <button class="delete-order" data-index="${index}">Удалить</button>
+                <button class="delete-order" data-id="${order.id}">Удалить</button>
             `;
             ordersList.appendChild(li);
         });
 
         document.querySelectorAll(".delete-order").forEach(button => {
             button.addEventListener("click", function () {
-                let index = this.dataset.index;
-                allOrders.splice(index, 1);
+                let id = parseInt(this.dataset.id);
+                let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+                allOrders = allOrders.filter(order => order.id !== id);
                 localStorage.setItem("allOrders", JSON.stringify(allOrders));
+
                 alert("Заказ удалён!");
-                loadOrders();
+                loadOrders(); // Обновляем страницу заказов
             });
         });
     }
