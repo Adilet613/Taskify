@@ -1,31 +1,31 @@
-// orders.js - управление заказами
+document.addEventListener("DOMContentLoaded", function () {
+    const ordersList = document.getElementById("orders-list");
 
-// Функция для загрузки заказов
-function loadOrders() {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    let ordersList = document.getElementById("orders-list");
-    ordersList.innerHTML = "";
-    
-    orders.forEach((order, index) => {
-        let orderElement = document.createElement("div");
-        orderElement.classList.add("order-item");
-        orderElement.innerHTML = `
-            <h3>${order.title}</h3>
-            <p>${order.description}</p>
-            <p><strong>Цена:</strong> ${order.price} USD</p>
-            <button onclick="deleteOrder(${index})">Удалить</button>
-        `;
-        ordersList.appendChild(orderElement);
-    });
-}
+    // Получаем выбранную работу фрилансера
+    const selectedJob = localStorage.getItem("selectedJob");
 
-// Функция для удаления заказа
-function deleteOrder(index) {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
-    orders.splice(index, 1);
-    localStorage.setItem("orders", JSON.stringify(orders));
+    // Загружаем заказы
+    function loadOrders() {
+        let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+        ordersList.innerHTML = "";
+
+        if (allOrders.length === 0) {
+            ordersList.innerHTML = "<p>Заказов пока нет.</p>";
+            return;
+        }
+
+        allOrders.forEach(order => {
+            if (order.job === selectedJob) {
+                let li = document.createElement("li");
+                li.textContent = `${order.title} - ${order.description}`;
+                ordersList.appendChild(li);
+            }
+        });
+
+        if (ordersList.innerHTML === "") {
+            ordersList.innerHTML = "<p>Нет заказов для выбранной работы.</p>";
+        }
+    }
+
     loadOrders();
-}
-
-// Загрузка заказов при открытии страницы
-document.addEventListener("DOMContentLoaded", loadOrders);
+});
