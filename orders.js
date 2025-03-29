@@ -14,9 +14,17 @@ document.addEventListener("DOMContentLoaded", function () {
             let li = document.createElement("li");
             li.innerHTML = `
                 <strong>${order.title}</strong> - ${order.description}
+                <button class="take-order" data-id="${order.id}">Взять заказ</button>
                 <button class="delete-order" data-id="${order.id}">Удалить</button>
             `;
             ordersList.appendChild(li);
+        });
+
+        document.querySelectorAll(".take-order").forEach(button => {
+            button.addEventListener("click", function () {
+                let id = parseInt(this.dataset.id);
+                markOrderAsTaken(id);
+            });
         });
 
         document.querySelectorAll(".delete-order").forEach(button => {
@@ -27,9 +35,24 @@ document.addEventListener("DOMContentLoaded", function () {
                 localStorage.setItem("allOrders", JSON.stringify(allOrders));
 
                 alert("Заказ удалён!");
-                loadOrders(); // Обновляем страницу заказов
+                loadOrders();
             });
         });
+    }
+
+    function markOrderAsTaken(orderId) {
+        let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
+        let order = allOrders.find(o => o.id === orderId);
+        
+        if (!order) return;
+
+        order.taken = true; 
+        localStorage.setItem("allOrders", JSON.stringify(allOrders));
+
+        localStorage.setItem("notification", `Ваш заказ "${order.title}" взят в работу.`);
+        
+        alert("Вы взяли заказ! Заказчик получит уведомление.");
+        loadOrders();
     }
 
     loadOrders();
