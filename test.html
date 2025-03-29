@@ -1,18 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Тест</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Тест для работников</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <h1>Тест на логику</h1>
-    <div id="test-container">
-        <h2 id="question">Загрузка...</h2>
-        <div id="answers"></div>
-        <button id="next-btn" onclick="nextQuestion()" class="hidden">Следующая задача</button>
-    </div>
+    <header>
+        <h1 class="center">Пройдите тест</h1>
+    </header>
+    <main>
+        <div class="center" id="test-container">
+            <p>Вопрос 1: Сколько будет 2 + 2?</p>
+            <input type="text" id="answer-1">
+            
+            <p>Вопрос 2: Какой язык программирования используется на Taskify?</p>
+            <input type="text" id="answer-2">
+            
+            <button id="submit-test">Отправить</button>
+        </div>
+    </main>
     <script src="test.js"></script>
 </body>
 </html>
