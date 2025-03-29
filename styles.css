@@ -1,20 +1,45 @@
 body {
     font-family: Arial, sans-serif;
-    text-align: center;
+    background: #f4f4f4;
     margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+header {
+    background: #007bff;
+    color: white;
     padding: 20px;
+    font-size: 24px;
+}
+
+main {
+    margin: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: inline-block;
 }
 
 button {
+    background: #28a745;
+    color: white;
     padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
+    border: none;
     cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
 }
 
-input, textarea {
-    display: block;
-    width: 80%;
-    margin: 10px auto;
-    padding: 10px;
+button:hover {
+    background: #218838;
+}
+
+.delete-order {
+    background: #dc3545;
+}
+
+.delete-order:hover {
+    background: #c82333;
 }
