@@ -1,10 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
     const ordersList = document.getElementById("orders-list");
 
-    // Получаем выбранную работу фрилансера
-    const selectedJob = localStorage.getItem("selectedJob");
-
-    // Загружаем заказы
     function loadOrders() {
         let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
         ordersList.innerHTML = "";
@@ -14,17 +10,24 @@ document.addEventListener("DOMContentLoaded", function () {
             return;
         }
 
-        allOrders.forEach(order => {
-            if (order.job === selectedJob) {
-                let li = document.createElement("li");
-                li.textContent = `${order.title} - ${order.description}`;
-                ordersList.appendChild(li);
-            }
+        allOrders.forEach((order, index) => {
+            let li = document.createElement("li");
+            li.innerHTML = `
+                <strong>${order.title}</strong> - ${order.description}
+                <button class="delete-order" data-index="${index}">Удалить</button>
+            `;
+            ordersList.appendChild(li);
         });
 
-        if (ordersList.innerHTML === "") {
-            ordersList.innerHTML = "<p>Нет заказов для выбранной работы.</p>";
-        }
+        document.querySelectorAll(".delete-order").forEach(button => {
+            button.addEventListener("click", function () {
+                let index = this.dataset.index;
+                allOrders.splice(index, 1);
+                localStorage.setItem("allOrders", JSON.stringify(allOrders));
+                alert("Заказ удалён!");
+                loadOrders();
+            });
+        });
     }
 
     loadOrders();
