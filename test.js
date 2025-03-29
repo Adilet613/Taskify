@@ -1,12 +1,12 @@
-document.getElementById("submit-test").addEventListener("click", function () {
-    let answer1 = document.getElementById("answer1").value.trim().toLowerCase();
-    let answer2 = document.getElementById("answer2").value.trim().toLowerCase();
-
-    if (answer1 === "правильный ответ" && answer2 === "правильный ответ") {
-        localStorage.setItem("isFreelancer", "true"); // Сохраняем в localStorage
-        alert("Поздравляем! Вы прошли тест.");
-        window.location.href = "orders.html"; // Отправляем на страницу с заказами
+document.getElementById("submit-test").addEventListener("click", function() {
+    const answer1 = document.getElementById("answer-1").value.trim();
+    const answer2 = document.getElementById("answer-2").value.trim().toLowerCase();
+    
+    if (answer1 === "4" && answer2 === "javascript") {
+        alert("Вы прошли тест!");
+        localStorage.setItem("workerVerified", "true");
+        window.location.href = "worker-dashboard.html";
     } else {
-        alert("Тест не пройден. Попробуйте снова.");
+        alert("Тест не пройден. Попробуйте еще раз.");
     }
 });
