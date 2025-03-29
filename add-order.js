@@ -1,31 +1,22 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const orderForm = document.getElementById("order-form");
+document.getElementById("publish-order").addEventListener("click", function () {
+    let title = document.getElementById("order-title").value;
+    let description = document.getElementById("order-description").value;
+    
+    if (!title || !description) {
+        alert("Заполните все поля!");
+        return;
+    }
 
-    orderForm.addEventListener("submit", function (e) {
-        e.preventDefault();
+    let newOrder = {
+        title: title,
+        description: description,
+        author: localStorage.getItem("username") || "Заказчик"
+    };
 
-        let title = document.getElementById("order-title").value.trim();
-        let description = document.getElementById("order-description").value.trim();
-        let category = document.getElementById("order-job").value;
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    orders.push(newOrder);
+    localStorage.setItem("orders", JSON.stringify(orders));
 
-        if (title === "" || description === "") {
-            alert("Заполните все поля!");
-            return;
-        }
-
-        let allOrders = JSON.parse(localStorage.getItem("allOrders")) || [];
-
-        let newOrder = {
-            title,
-            description,
-            category,
-            id: Date.now()
-        };
-
-        allOrders.push(newOrder);
-        localStorage.setItem("allOrders", JSON.stringify(allOrders));
-
-        alert("Заказ успешно создан!");
-        window.location.href = "orders.html"; // Перенаправление на страницу заказов
-    });
+    alert("Заказ опубликован!");
+    window.location.href = "dashboard.html"; 
 });
