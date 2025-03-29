@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Taskify</title>
     <link rel="stylesheet" href="styles.css">
-    <script defer src="auth.js"></script>
 </head>
 <body>
-    <div class="container">
-        <h1>Taskify</h1>
-        <p>Выберите свою роль:</p>
-        <button onclick="window.location.href='customer.html'">Я заказчик</button>
-        <button onclick="window.location.href='freelancer.html'">Я фрилансер</button>
-        <p>
-            <a id="loginLink" href="login.html">Войти</a> |
-            <a id="registerLink" href="register.html">Зарегистрироваться</a>
-            <button id="logoutButton" style="display: none;" onclick="logout()">Выйти</button>
-        </p>
-    </div>
+    <header>
+        <h1 class="center">Taskify</h1>
+    </header>
+    <main>
+        <div class="center">
+            <h2>Выберите свою роль</h2>
+            <button id="customer-btn">Я заказчик</button>
+            <button id="worker-btn">Я работник</button>
+        </div>
+        <div class="center">
+            <button id="login-btn">Войти</button>
+            <button id="register-btn">Зарегистрироваться</button>
+        </div>
+    </main>
+    <script src="index.js"></script>
 </body>
 </html>
