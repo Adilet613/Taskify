@@ -1,42 +1,54 @@
-// orders.js - Файл для управления заказами
-
 document.addEventListener("DOMContentLoaded", function () {
-    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    const orderForm = document.getElementById("order-form");
+    const orderList = document.getElementById("user-orders");
+    const deleteOrderButton = document.getElementById("delete-order");
+    const noOrdersMessage = document.getElementById("no-orders-message");
     
-    function saveOrders() {
-        localStorage.setItem("orders", JSON.stringify(orders));
-    }
-    
-    function renderOrders() {
-        const orderList = document.getElementById("order-list");
+    function loadOrders() {
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
         orderList.innerHTML = "";
-        orders.forEach((order, index) => {
-            let li = document.createElement("li");
-            li.innerHTML = `<strong>${order.title}</strong> - ${order.description} (${order.price} руб.)`;
-            let deleteBtn = document.createElement("button");
-            deleteBtn.innerText = "Удалить";
-            deleteBtn.onclick = function () {
-                orders.splice(index, 1);
-                saveOrders();
-                renderOrders();
-            };
-            li.appendChild(deleteBtn);
-            orderList.appendChild(li);
-        });
+        
+        if (orders.length === 0) {
+            noOrdersMessage.style.display = "block";
+        } else {
+            noOrdersMessage.style.display = "none";
+            orders.forEach((order, index) => {
+                const li = document.createElement("li");
+                li.textContent = `${order.title} - ${order.price} руб.`;
+                li.dataset.index = index;
+                orderList.appendChild(li);
+            });
+        }
     }
     
-    document.getElementById("create-order").addEventListener("submit", function (event) {
+    function saveOrder(order) {
+        const orders = JSON.parse(localStorage.getItem("orders")) || [];
+        orders.push(order);
+        localStorage.setItem("orders", JSON.stringify(orders));
+        loadOrders();
+    }
+    
+    function deleteOrders() {
+        localStorage.removeItem("orders");
+        loadOrders();
+    }
+    
+    orderForm.addEventListener("submit", function (event) {
         event.preventDefault();
-        let title = document.getElementById("order-title").value;
-        let description = document.getElementById("order-description").value;
-        let price = document.getElementById("order-price").value;
-        if (title && description && price) {
-            orders.push({ title, description, price });
-            saveOrders();
-            renderOrders();
-            document.getElementById("create-order").reset();
+        const title = document.getElementById("order-title").value;
+        const description = document.getElementById("order-description").value;
+        const price = document.getElementById("order-price").value;
+        
+        if (title && price) {
+            const order = { title, description, price };
+            saveOrder(order);
+            orderForm.reset();
         }
     });
     
-    renderOrders();
+    deleteOrderButton.addEventListener("click", function () {
+        deleteOrders();
+    });
+    
+    loadOrders();
 });
